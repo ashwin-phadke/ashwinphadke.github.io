@@ -27,10 +27,11 @@
   
     
   
-  <meta name="description" content="AI and Deep Learning Engineer">
+  <meta name="description" content="Here is a guide to getting started with SQL Server and Azure Data Studio on Linux.
+When I was starting on in my career , databases always meant the MySQL and PHP way to implement anything.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/authors/">
+  <link rel="alternate" hreflang="en-us" href="/post/my-article-name/">
 
   
 
@@ -213,14 +214,12 @@
   
 
   
-  <link rel="alternate" href="/authors/index.xml" type="application/rss+xml" title="Ashwin Phadke">
-  
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/authors/">
+  <link rel="canonical" href="/post/my-article-name/">
 
   
   
@@ -238,17 +237,66 @@
   <meta property="twitter:creator" content="@ashwinphadke1">
   
   <meta property="og:site_name" content="Ashwin Phadke">
-  <meta property="og:url" content="/authors/">
-  <meta property="og:title" content="Authors | Ashwin Phadke">
-  <meta property="og:description" content="AI and Deep Learning Engineer"><meta property="og:image" content="/img/avatar">
+  <meta property="og:url" content="/post/my-article-name/">
+  <meta property="og:title" content="Getting started with SQL server on Linux (using Azure data studio) | Ashwin Phadke">
+  <meta property="og:description" content="Here is a guide to getting started with SQL Server and Azure Data Studio on Linux.
+When I was starting on in my career , databases always meant the MySQL and PHP way to implement anything."><meta property="og:image" content="/img/avatar">
   <meta property="twitter:image" content="/img/avatar"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-06-09T20:45:46&#43;05:30">
+    
+      <meta property="article:published_time" content="2020-06-09T20:42:55&#43;05:30">
+    
+    <meta property="article:modified_time" content="2020-06-09T20:42:55&#43;05:30">
   
 
   
 
 
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/my-article-name/"
+  },
+  "headline": "Getting started with SQL server on Linux (using Azure data studio)",
+  
+  "datePublished": "2020-06-09T20:42:55+05:30",
+  "dateModified": "2020-06-09T20:42:55+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Ashwin Phadke"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ashwin Phadke",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Here is a guide to getting started with SQL Server and Azure Data Studio on Linux.\nWhen I was starting on in my career , databases always meant the MySQL and PHP way to implement anything."
+}
+</script>
+
+  
+
+  
 
 
   
@@ -290,7 +338,7 @@
 
 
 
-  <title>Authors | Ashwin Phadke</title>
+  <title>Getting started with SQL server on Linux (using Azure data studio) | Ashwin Phadke</title>
 
 </head>
 
@@ -602,55 +650,303 @@
 </nav>
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <article class="article">
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+  
+
   
   
+  
+<div class="article-container pt-3">
+  <h1>Getting started with SQL server on Linux (using Azure data studio)</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1>Authors</h1>
+
+
+<div class="article-metadata">
 
   
+  
+  
+  
+  <div>
+    
+
+  
+  <span>Ashwin Phadke</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 9, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 </div>
 
 
 
-<div class="universal-wrapper">
-  
+  <div class="article-container">
 
-  <ul>
+    <div class="article-style">
+      <p>Here is a guide to getting started with SQL Server and Azure Data Studio on Linux.</p>
+<p>When I was starting on in my career , databases always meant the MySQL and PHP way to implement anything. However even though MySQL is really a gem SQL Server and it&rsquo;s functionality gives you the full enterprise like experience and ease to implement into your code and especially the activity manager aka activity monitor which I fell for immediately.</p>
+<p>Starting with SQL server and that too Linux is not very easy a task. Mostly the primary reason being that all the config files and supporting installation scripts are <code>python 2.x</code> compatible which is strange considering how long ago <code>python 3.x</code> was launched. I did not have <code>python 2.x</code> and did not want two python versions on my PC so I took up the task to convert most of the available installation scripts to support <code>python 3.x</code> and which is yet in progress giving the sheer amount of things needed to change.
+Meanwhile the development couldn&rsquo;t have waited and hence I am writing a guide to facilitate ease in installing SQL Server on Linux. The documentation is pretty good in describing things but also is a lot of different pages to visit for a simple task. Hence adding it all under one page here.</p>
+<p>My Machine configuration is as follows(for reference) :</p>
+<ul>
+<li>Intel I3-6006U</li>
+<li>4GB / 1TB</li>
+<li>Dual boot
+<ul>
+<li>Fedora 31</li>
+<li>Windows 10</li>
+</ul>
+</li>
+<li>Python 2.7 and 3.5 with pip package manager.</li>
+</ul>
+<p>To successfully install SQL server and start using it follow the following steps carefully:</p>
+<ol>
+<li>
+<p>Update your system : Run <code>sudo dnf update</code> followed with <code>sudo dnf upgrade</code>
+to have the most recent updates to your Fedora machine.
+If you are using Debian/Ubuntu you can simply do <code>sudo apt-get update</code> and <code>sudo apt-get upgrade</code>            respectively.</p>
+</li>
+<li>
+<p>Download SQL configuration file from Red Hat repository :</p>
+</li>
+</ol>
+<p><code>sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/8/mssql-server-2019.repo</code></p>
+<ol start="3">
+<li>To Install the SQL server run :</li>
+</ol>
+<p><code>sudo yum install -y mssql-server</code></p>
+<p>This will install all the primary requirements for SQL server.</p>
+<ol start="4">
+<li>Now to configure your SQL server installation you need to run the following command in order to complete the installation. The configuration step includes various options to add/remove add-ons to your SQL server installation and also to choose your edition.</li>
+</ol>
+<p><code>sudo /opt/mssql/bin/mssql-conf setup</code></p>
+<ol start="5">
+<li>
+<p>This will fully install SQL server on your machine. Installation doesn&rsquo;t take much time as most of the stuff is already done in Step 4 and step 5 includes configurations and settings that are needed to be installed in order to run the server.</p>
+</li>
+<li>
+<p>Run <code>systemctl status mssql-server</code> to check whether the service is running or not. You can also use the standard <code>start</code> and <code>stop</code> for <code>systemctl</code> to change the service state.</p>
+</li>
+</ol>
+<p>So far we have installed SQL server but we also need to be able to access it, you can use <code>pyodbc</code> for all your python needs , also UnixODBC to connect via python program and/or command line. For that you will need some command line tools which you can learn to install here following steps by clicking 
+<a href="https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-ver15#tools" target="_blank" rel="noopener">here</a> .
+The reason for not including here is :</p>
+<ul>
+<li>It is already included on the link like the above steps too.</li>
+<li>The focus here is SQL Server + Azure Data Studio</li>
+</ul>
+<ol start="7">
+<li>
+<p>To install Azure Data studio in a very simple way click 
+<a href="https://azuredatastudiobuilds.blob.core.windows.net/releases/1.15.1/azuredatastudio-linux-1.15.1.rpm" target="_blank" rel="noopener">here for version 1.15.1</a></p>
+</li>
+<li>
+<p>After the successful installation it will show up in your app directory.</p>
+</li>
+<li>
+<p>Simply start using command <code>azuredatastudio</code> in terminal or by clicking Azure data studio in apps and connect with the username and password that you had configured in step 4. Default username is <code>SA</code></p>
+</li>
+</ol>
+<p>You have now successfully managed to install SQL Server using Azure Data Studio on Linux(Fedora).</p>
+<hr>
+
+    </div>
+
     
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
     
       
-      <li><a href="/author/ashwin-phadke/">Ashwin Phadke</a></li>
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/my-article-name/&amp;text=Getting%20started%20with%20SQL%20server%20on%20Linux%20%28using%20Azure%20data%20studio%29" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-      <li><a href="/author/ashwin-phadke/">Ashwin Phadke</a></li>
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/my-article-name/&amp;t=Getting%20started%20with%20SQL%20server%20on%20Linux%20%28using%20Azure%20data%20studio%29" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Getting%20started%20with%20SQL%20server%20on%20Linux%20%28using%20Azure%20data%20studio%29&amp;body=/post/my-article-name/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/my-article-name/&amp;title=Getting%20started%20with%20SQL%20server%20on%20Linux%20%28using%20Azure%20data%20studio%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Getting%20started%20with%20SQL%20server%20on%20Linux%20%28using%20Azure%20data%20studio%29%20/post/my-article-name/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
     
   </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
 
   
 
-</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/install-opencv/">Installing OpenCV from source on Fedora 31</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
 
       
 

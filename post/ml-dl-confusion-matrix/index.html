@@ -27,10 +27,11 @@
   
     
   
-  <meta name="description" content="AI and Deep Learning Engineer">
+  <meta name="description" content="Machine learning basic concepts explained as notes from various courses, books and blogs to my understanding.
+Confusion Matrix Confusion matrix as a evaluation metric has been discussed a lot. Indeed, the reason being it&rsquo;s wide usability and f1-score being a important metric in order to evaluate those classification models.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/authors/">
+  <link rel="alternate" hreflang="en-us" href="/post/ml-dl-confusion-matrix/">
 
   
 
@@ -213,14 +214,12 @@
   
 
   
-  <link rel="alternate" href="/authors/index.xml" type="application/rss+xml" title="Ashwin Phadke">
-  
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/authors/">
+  <link rel="canonical" href="/post/ml-dl-confusion-matrix/">
 
   
   
@@ -238,17 +237,66 @@
   <meta property="twitter:creator" content="@ashwinphadke1">
   
   <meta property="og:site_name" content="Ashwin Phadke">
-  <meta property="og:url" content="/authors/">
-  <meta property="og:title" content="Authors | Ashwin Phadke">
-  <meta property="og:description" content="AI and Deep Learning Engineer"><meta property="og:image" content="/img/avatar">
+  <meta property="og:url" content="/post/ml-dl-confusion-matrix/">
+  <meta property="og:title" content="Understanding Confusion matrix for machine learning in a simple way | Ashwin Phadke">
+  <meta property="og:description" content="Machine learning basic concepts explained as notes from various courses, books and blogs to my understanding.
+Confusion Matrix Confusion matrix as a evaluation metric has been discussed a lot. Indeed, the reason being it&rsquo;s wide usability and f1-score being a important metric in order to evaluate those classification models."><meta property="og:image" content="/img/avatar">
   <meta property="twitter:image" content="/img/avatar"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-06-09T20:45:46&#43;05:30">
+    
+      <meta property="article:published_time" content="2020-06-09T20:50:31&#43;05:30">
+    
+    <meta property="article:modified_time" content="2020-06-09T20:50:31&#43;05:30">
   
 
   
 
 
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/ml-dl-confusion-matrix/"
+  },
+  "headline": "Understanding Confusion matrix for machine learning in a simple way",
+  
+  "datePublished": "2020-06-09T20:50:31+05:30",
+  "dateModified": "2020-06-09T20:50:31+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Ashwin Phadke"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ashwin Phadke",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Machine learning basic concepts explained as notes from various courses, books and blogs to my understanding.\nConfusion Matrix Confusion matrix as a evaluation metric has been discussed a lot. Indeed, the reason being it\u0026rsquo;s wide usability and f1-score being a important metric in order to evaluate those classification models."
+}
+</script>
+
+  
+
+  
 
 
   
@@ -290,7 +338,7 @@
 
 
 
-  <title>Authors | Ashwin Phadke</title>
+  <title>Understanding Confusion matrix for machine learning in a simple way | Ashwin Phadke</title>
 
 </head>
 
@@ -602,55 +650,359 @@
 </nav>
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <article class="article">
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+  
+
   
   
+  
+<div class="article-container pt-3">
+  <h1>Understanding Confusion matrix for machine learning in a simple way</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1>Authors</h1>
+
+
+<div class="article-metadata">
 
   
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 9, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 </div>
 
 
 
-<div class="universal-wrapper">
-  
+  <div class="article-container">
 
-  <ul>
+    <div class="article-style">
+      <p>Machine learning basic concepts explained as notes from various courses, books and blogs to my understanding.</p>
+<h1 id="confusion-matrix">Confusion Matrix</h1>
+<p>Confusion matrix as a evaluation metric has been discussed a lot. Indeed, the reason being it&rsquo;s wide usability and f1-score being a important metric in order to evaluate those classification models. Here we take a look at understanding the confusion matrix in a rather simple way.</p>
+<p>Let us assume a dataset with around 40 rows of customer chrun according to a survey from a leading company. The confusion matrix herein will include the matrix of corrected and wrong predictions done on actual labels i.e the outcomes of the preditions on actual labels.</p>
+<p>The matrix is represented as :</p>
+<pre><code>rows :  Contain actual or true labels in the test set i.e here the labels given by the survey.
+
+columns : Contain predicted labels by the classifier trained on the customer survey dataset.
+</code></pre>
+<p>It is imperative to understand this relation so as to identify how accurate was the prediction done from the classifier.</p>
+<p>We are going to see a binary classifcation example.</p>
+<p>We know that such evalutaion metrics shows the models ability to correctly predict or seperate the classes.
+We will be also discussing f1-score here which is also important to learn along with confusion matrix.</p>
+<p><img src="https://github.com/ashwin-phadke/implementations-and-guides/blob/master/wiki_contents/confmatrix.jpg" alt="Matrix" title="Matrix Image"></p>
+<p>The confusion matrix helps you measure some of very important metrics to assess performance of your model like :</p>
+<pre><code>-  Precision
+-  Recall
+-  Accuracy and plot ROC-AUC curve too
+</code></pre>
+<p>Let us first dive into ddefining certain terminologies to better understand the concept of confusion matrix.</p>
+<pre><code>- True Positive : Model predicted true and it is correct as per labels.
+
+- False Positive : Model predicted true but it is actually false.
+
+- True Negative : Model predicted false and it is false.
+
+- False Negative : Model predicted false but it is True.
+</code></pre>
+<p><img src="https://github.com/ashwin-phadke/implementations-and-guides/blob/master/wiki_contents/abc.png" alt="Image"></p>
+<p>The image clearly illustrates how these values are divided in the matrix.</p>
+<p>We will take a look at how to calculate the values for the metrics derived from this matrix(lol, rhyme)</p>
+<p>Precision is a measure of accuracy provided that a class label has been predicted.</p>
+<pre><code>Precision = True Positive 
+            __________________________
+
+            True Positve + False Positive
+</code></pre>
+<pre><code>Recall = True Positive 
+        ______________________________
+
+        True Positve + False Negative
+</code></pre>
+<pre><code>
+f1-score = 2 X Precision + Recall
+            ______________________
+
+            Precision X Recall
+
+</code></pre>
+<p>Thus, average accuracy can be calculated using average of all f1-scores and the desired values is 1. F1-score can also be used for multi class classifiers.</p>
+<p>If you want to learn more you can always refer to 
+<a href="https://en.wikipedia.org/wiki/Confusion_matrix" target="_blank" rel="noopener">Wikipedia</a> for more.</p>
+<hr>
+
+    </div>
+
     
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
     
       
-      <li><a href="/author/ashwin-phadke/">Ashwin Phadke</a></li>
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/ml-dl-confusion-matrix/&amp;text=Understanding%20Confusion%20matrix%20for%20machine%20learning%20in%20a%20simple%20way" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-      <li><a href="/author/ashwin-phadke/">Ashwin Phadke</a></li>
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/ml-dl-confusion-matrix/&amp;t=Understanding%20Confusion%20matrix%20for%20machine%20learning%20in%20a%20simple%20way" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Understanding%20Confusion%20matrix%20for%20machine%20learning%20in%20a%20simple%20way&amp;body=/post/ml-dl-confusion-matrix/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/ml-dl-confusion-matrix/&amp;title=Understanding%20Confusion%20matrix%20for%20machine%20learning%20in%20a%20simple%20way" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Understanding%20Confusion%20matrix%20for%20machine%20learning%20in%20a%20simple%20way%20/post/ml-dl-confusion-matrix/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
     
   </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
   
+  
 
-</div>
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/ashwin-phadke/avatar_hu2824a27c28b86285af6303ba3a88f5dd_13785_270x270_fill_q90_lanczos_center.JPG" alt="Ashwin Phadke">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Ashwin Phadke</a></h5>
+        <h6 class="card-subtitle">AI and Deep Learning Engineer</h6>
+        <p class="card-text">Ashwin is a AI and Deep learning engineer with more than 1.2 years or professional and coaching experience in deep learning, computer vision and NLP</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:ashwinphadke12@rediffmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/ashwin-phadke1041995/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/ashwinphadke1" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/ashwin-phadke" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
 
       
 

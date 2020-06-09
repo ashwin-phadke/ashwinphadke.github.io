@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="AI and Deep Learning Engineer">
+  <meta name="description" content="Why the sudden need? I have mostly used the OpenCV library as available from pip or by installing wheel until I required some more essential features that are not available from those pre built binaries.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/authors/">
+  <link rel="alternate" hreflang="en-us" href="/post/install-opencv/">
 
   
 
@@ -213,14 +213,12 @@
   
 
   
-  <link rel="alternate" href="/authors/index.xml" type="application/rss+xml" title="Ashwin Phadke">
-  
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/authors/">
+  <link rel="canonical" href="/post/install-opencv/">
 
   
   
@@ -238,17 +236,65 @@
   <meta property="twitter:creator" content="@ashwinphadke1">
   
   <meta property="og:site_name" content="Ashwin Phadke">
-  <meta property="og:url" content="/authors/">
-  <meta property="og:title" content="Authors | Ashwin Phadke">
-  <meta property="og:description" content="AI and Deep Learning Engineer"><meta property="og:image" content="/img/avatar">
+  <meta property="og:url" content="/post/install-opencv/">
+  <meta property="og:title" content="Installing OpenCV from source on Fedora 31 | Ashwin Phadke">
+  <meta property="og:description" content="Why the sudden need? I have mostly used the OpenCV library as available from pip or by installing wheel until I required some more essential features that are not available from those pre built binaries."><meta property="og:image" content="/img/avatar">
   <meta property="twitter:image" content="/img/avatar"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-06-09T20:45:46&#43;05:30">
+    
+      <meta property="article:published_time" content="2020-06-09T20:45:46&#43;05:30">
+    
+    <meta property="article:modified_time" content="2020-06-09T20:45:46&#43;05:30">
   
 
   
 
 
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/install-opencv/"
+  },
+  "headline": "Installing OpenCV from source on Fedora 31",
+  
+  "datePublished": "2020-06-09T20:45:46+05:30",
+  "dateModified": "2020-06-09T20:45:46+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Ashwin Phadke"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ashwin Phadke",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Why the sudden need? I have mostly used the OpenCV library as available from pip or by installing wheel until I required some more essential features that are not available from those pre built binaries."
+}
+</script>
+
+  
+
+  
 
 
   
@@ -290,7 +336,7 @@
 
 
 
-  <title>Authors | Ashwin Phadke</title>
+  <title>Installing OpenCV from source on Fedora 31 | Ashwin Phadke</title>
 
 </head>
 
@@ -602,55 +648,300 @@
 </nav>
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <article class="article">
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+  
+
   
   
+  
+<div class="article-container pt-3">
+  <h1>Installing OpenCV from source on Fedora 31</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1>Authors</h1>
+
+
+<div class="article-metadata">
 
   
+  
+  
+  
+  <div>
+    
+
+  
+  <span>Ashwin Phadke</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 9, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 </div>
 
 
 
-<div class="universal-wrapper">
-  
+  <div class="article-container">
 
-  <ul>
+    <div class="article-style">
+      <p>Why the sudden need?
+I have mostly used the OpenCV library as available from pip or by installing wheel until I required some more essential features that are not available from those pre built binaries. However the installation looking fairly simple can have a lot of issues if not done correctly and hence the reason for being so mnay questions on forums out there on the internet pertaining to the installation issues:</p>
+<p>Let&rsquo;s begin :</p>
+<p>Although it is always a best practice to create a virtual environment so as to keep your project dependencies sorted but skipping the step here. If you want to create one or know more about those you can visit 
+<a href="https://docs.python.org/3/tutorial/venv.html" target="_blank" rel="noopener">this link</a> for more information .</p>
+<ul>
+<li>Clone <code>git clone https://github.com/opencv/opencv.git</code> the official 
+<a href="https://github.com/opencv/opencv" target="_blank" rel="noopener">OpenCV repository</a> from Github to have the latest updated version for use.</li>
+</ul>
+<p>This will create a folder named opencv in your home directory.</p>
+<ul>
+<li>Some dependencies need to be taken care of before building OpenCV for use. These dependencies are <strong>IMPORTANT</strong> to facilitate the proper installation of opencv on the system and avoiding errors like <code>no module found</code> and etc even after having a successful install.</li>
+</ul>
+<p>The must have dependenices :</p>
+<pre><code>         * `dnf install cmake`
+         * `dnf install python-devel numpy`
+         * `dnf install gcc gcc-c++`
+         * `dnf install make`
+</code></pre>
+<ul>
+<li>
+<p>GTK support :</p>
+<pre><code>    * `dnf install gtk2-devel`
+    * `dnf install libdc1394-devel`
+    * `dnf install libv4l-devel`
+    * `dnf install ffmpeg-devel`
+    * `dnf install gstreamer-plugins-base-devel`
+</code></pre>
+</li>
+<li>
+<p>For parallelizing functions in opencv on Intel machines you can install Threaded building blocks <code>yum install tbb-devel</code> . If you install this pass -D WITH_TBB=ON while building OpenCV with CMake.</p>
+</li>
+<li>
+<p>Similarly for optimized mathematical operations install <code>dnf install eigen3-devel</code> and pass -D WITH_EIGEN=ON as earlier.</p>
+</li>
+<li>
+<p>Create a folder named build wherein you&rsquo;ll configure and build the library to later install by doing
+<code>mkdir build</code>
+<code>cd build</code></p>
+</li>
+<li>
+<p>Installing OpenCV - OpenCV is typically installed using CMake as(explanation from the documentation) - Installation has to be configured with CMake. It specifies which modules are to be installed, installation path, which additional libraries to be used, whether documentation and examples to be compiled etc. Below command is normally used for configuration (executed from build folder).</p>
+</li>
+<li>
+<p>To configure build parameters using CMake you will pass the following command for minimal installation in release mode <code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..</code></p>
+</li>
+<li>
+<p>If you have installed the threading building blocks then you pass
+<code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_TBB=ON</code></p>
+</li>
+<li>
+<p>If you have installed the eigen library then do
+<code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON</code>  .</p>
+</li>
+<li>
+<p>If installed both then
+<code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON</code></p>
+</li>
+<li>
+<p>Finally execute <code>make install</code> to successfully build and install the OpenCV library on your Fedora machine.</p>
+</li>
+</ul>
+<hr>
+
+    </div>
+
     
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
     
       
-      <li><a href="/author/ashwin-phadke/">Ashwin Phadke</a></li>
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/install-opencv/&amp;text=Installing%20OpenCV%20from%20source%20on%20Fedora%2031" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-      <li><a href="/author/ashwin-phadke/">Ashwin Phadke</a></li>
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/install-opencv/&amp;t=Installing%20OpenCV%20from%20source%20on%20Fedora%2031" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Installing%20OpenCV%20from%20source%20on%20Fedora%2031&amp;body=/post/install-opencv/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/install-opencv/&amp;title=Installing%20OpenCV%20from%20source%20on%20Fedora%2031" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Installing%20OpenCV%20from%20source%20on%20Fedora%2031%20/post/install-opencv/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
     
   </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
 
   
 
-</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/my-article-name/">Getting started with SQL server on Linux (using Azure data studio)</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
 
       
 

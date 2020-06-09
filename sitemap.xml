@@ -4,7 +4,42 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-06-08T23:09:18+05:30</lastmod>
+    <lastmod>2020-06-09T20:50:31+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-06-09T20:50:31+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/ml-dl-confusion-matrix/</loc>
+    <lastmod>2020-06-09T20:50:31+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/compile-cpp-program-opencv/</loc>
+    <lastmod>2020-06-09T20:48:22+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/author/ashwin-phadke/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/install-opencv/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/my-article-name/</loc>
+    <lastmod>2020-06-09T20:42:55+05:30</lastmod>
   </url>
   
   <url>
@@ -22,15 +57,7 @@
   </url>
   
   <url>
-    <loc>/authors/</loc>
-  </url>
-  
-  <url>
     <loc>/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
   </url>
   
   <url>

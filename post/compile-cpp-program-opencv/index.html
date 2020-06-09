@@ -27,10 +27,11 @@
   
     
   
-  <meta name="description" content="AI and Deep Learning Engineer">
+  <meta name="description" content="Compiling and executing C&#43;&#43; programs   Browse to the directory of your cpp program and open a terminal in that folder.
+  Create a CMake file name CMakeLists.txt in the same directory as your project :">
 
   
-  <link rel="alternate" hreflang="en-us" href="/authors/">
+  <link rel="alternate" hreflang="en-us" href="/post/compile-cpp-program-opencv/">
 
   
 
@@ -213,14 +214,12 @@
   
 
   
-  <link rel="alternate" href="/authors/index.xml" type="application/rss+xml" title="Ashwin Phadke">
-  
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/authors/">
+  <link rel="canonical" href="/post/compile-cpp-program-opencv/">
 
   
   
@@ -238,17 +237,66 @@
   <meta property="twitter:creator" content="@ashwinphadke1">
   
   <meta property="og:site_name" content="Ashwin Phadke">
-  <meta property="og:url" content="/authors/">
-  <meta property="og:title" content="Authors | Ashwin Phadke">
-  <meta property="og:description" content="AI and Deep Learning Engineer"><meta property="og:image" content="/img/avatar">
+  <meta property="og:url" content="/post/compile-cpp-program-opencv/">
+  <meta property="og:title" content="Compiling and executing OpenCV programs written in C&#43;&#43; | Ashwin Phadke">
+  <meta property="og:description" content="Compiling and executing C&#43;&#43; programs   Browse to the directory of your cpp program and open a terminal in that folder.
+  Create a CMake file name CMakeLists.txt in the same directory as your project :"><meta property="og:image" content="/img/avatar">
   <meta property="twitter:image" content="/img/avatar"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-06-09T20:45:46&#43;05:30">
+    
+      <meta property="article:published_time" content="2020-06-09T20:48:22&#43;05:30">
+    
+    <meta property="article:modified_time" content="2020-06-09T20:48:22&#43;05:30">
   
 
   
 
 
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/compile-cpp-program-opencv/"
+  },
+  "headline": "Compiling and executing OpenCV programs written in C++",
+  
+  "datePublished": "2020-06-09T20:48:22+05:30",
+  "dateModified": "2020-06-09T20:48:22+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Ashwin Phadke"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ashwin Phadke",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Compiling and executing C++ programs   Browse to the directory of your cpp program and open a terminal in that folder.\n  Create a CMake file name CMakeLists.txt in the same directory as your project :"
+}
+</script>
+
+  
+
+  
 
 
   
@@ -290,7 +338,7 @@
 
 
 
-  <title>Authors | Ashwin Phadke</title>
+  <title>Compiling and executing OpenCV programs written in C&#43;&#43; | Ashwin Phadke</title>
 
 </head>
 
@@ -602,55 +650,333 @@
 </nav>
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <article class="article">
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+  
+
   
   
+  
+<div class="article-container pt-3">
+  <h1>Compiling and executing OpenCV programs written in C&#43;&#43;</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1>Authors</h1>
+
+
+<div class="article-metadata">
 
   
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 9, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 </div>
 
 
 
-<div class="universal-wrapper">
-  
+  <div class="article-container">
 
-  <ul>
+    <div class="article-style">
+      <h1 id="compiling-and-executing-c-programs">Compiling and executing C++ programs</h1>
+<ul>
+<li>
+<p>Browse to the directory of your cpp program and open a terminal in that folder.</p>
+</li>
+<li>
+<p>Create a CMake file name CMakeLists.txt in the same directory as your project :</p>
+</li>
+</ul>
+<pre><code>              cmake_minimum_required(VERSION 2.8)
+              project( ProjectName )
+              find_package( OpenCV REQUIRED )`
+              add_executable( ProjectName your_program_main_file.cpp )
+              target_link_libraries( ProjectName ${OpenCV_LIBS} ) 
+</code></pre>
+<ul>
+<li>Now we can generate the executable so as to run the program.
+To do so execute</li>
+</ul>
+<pre><code> cmake .</code></pre>
+<p>followed by</p>
+<pre><code> make </code></pre>
+<p>on the terminal. The execution will run successfully and create binaries if there are no errors.</p>
+<ul>
+<li>To execute your compiled program enter <code>./ProjectName</code></li>
+</ul>
+<hr>
+
+    </div>
+
     
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
     
       
-      <li><a href="/author/ashwin-phadke/">Ashwin Phadke</a></li>
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/compile-cpp-program-opencv/&amp;text=Compiling%20and%20executing%20OpenCV%20programs%20written%20in%20C&#43;&#43;" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-      <li><a href="/author/ashwin-phadke/">Ashwin Phadke</a></li>
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/compile-cpp-program-opencv/&amp;t=Compiling%20and%20executing%20OpenCV%20programs%20written%20in%20C&#43;&#43;" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Compiling%20and%20executing%20OpenCV%20programs%20written%20in%20C&#43;&#43;&amp;body=/post/compile-cpp-program-opencv/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/compile-cpp-program-opencv/&amp;title=Compiling%20and%20executing%20OpenCV%20programs%20written%20in%20C&#43;&#43;" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Compiling%20and%20executing%20OpenCV%20programs%20written%20in%20C&#43;&#43;%20/post/compile-cpp-program-opencv/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
     
   </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
   
+  
 
-</div>
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/ashwin-phadke/avatar_hu2824a27c28b86285af6303ba3a88f5dd_13785_270x270_fill_q90_lanczos_center.JPG" alt="Ashwin Phadke">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Ashwin Phadke</a></h5>
+        <h6 class="card-subtitle">AI and Deep Learning Engineer</h6>
+        <p class="card-text">Ashwin is a AI and Deep learning engineer with more than 1.2 years or professional and coaching experience in deep learning, computer vision and NLP</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:ashwinphadke12@rediffmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/ashwin-phadke1041995/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/ashwinphadke1" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/ashwin-phadke" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
 
       
 
