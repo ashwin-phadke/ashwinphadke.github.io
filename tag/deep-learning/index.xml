@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Learning | Ashwin Phadke</title>
+    <link>/tag/deep-learning/</link>
+      <atom:link href="/tag/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Deep Learning</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Wed, 10 Jun 2020 21:43:12 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>Deep Learning</title>
+      <link>/tag/deep-learning/</link>
+    </image>
+    
+    <item>
+      <title>Object Detection</title>
+      <link>/project/object-detection/</link>
+      <pubDate>Wed, 10 Jun 2020 21:43:12 +0530</pubDate>
+      <guid>/project/object-detection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Face Recognition using Python and OpenCV Haarcascades</title>
+      <link>/project/face-recognition/</link>
+      <pubDate>Wed, 10 Jun 2020 20:45:03 +0530</pubDate>
+      <guid>/project/face-recognition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optical Flow using OpenCV and Python</title>
+      <link>/project/optical-flow/</link>
+      <pubDate>Tue, 09 Jun 2020 22:26:21 +0530</pubDate>
+      <guid>/project/optical-flow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Canny Edge Detection using OpenCV and C&#43;&#43;</title>
+      <link>/project/canny-edge-detection/</link>
+      <pubDate>Tue, 09 Jun 2020 22:21:49 +0530</pubDate>
+      <guid>/project/canny-edge-detection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Find Dominant Color from an image using OpenCV and C&#43;&#43;</title>
+      <link>/project/find-dominant-color/</link>
+      <pubDate>Tue, 09 Jun 2020 22:17:31 +0530</pubDate>
+      <guid>/project/find-dominant-color/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -4,7 +4,62 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-06-09T20:50:31+05:30</lastmod>
+    <lastmod>2020-06-10T21:43:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/deep-learning/</loc>
+    <lastmod>2020-06-10T21:43:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/object-detection/</loc>
+    <lastmod>2020-06-10T21:43:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/</loc>
+    <lastmod>2020-06-10T21:43:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-06-10T21:43:12+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/android/</loc>
+    <lastmod>2020-06-10T21:38:15+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/smart-anti-breach/</loc>
+    <lastmod>2020-06-10T21:38:15+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/zappchat/</loc>
+    <lastmod>2020-06-10T21:36:51+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/face-recognition/</loc>
+    <lastmod>2020-06-10T20:45:03+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/optical-flow/</loc>
+    <lastmod>2020-06-09T22:26:21+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/canny-edge-detection/</loc>
+    <lastmod>2020-06-09T22:21:49+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/find-dominant-color/</loc>
+    <lastmod>2020-06-09T22:17:31+05:30</lastmod>
   </url>
   
   <url>
@@ -66,10 +121,6 @@
   
   <url>
     <loc>/publication/</loc>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
   </url>
   
 </urlset>

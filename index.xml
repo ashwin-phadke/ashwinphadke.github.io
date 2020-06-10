@@ -5,12 +5,68 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>Ashwin Phadke</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Tue, 09 Jun 2020 20:50:31 +0530</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Wed, 10 Jun 2020 21:43:12 +0530</lastBuildDate>
     <image>
       <url>/img/avatar</url>
       <title>Ashwin Phadke</title>
       <link>/</link>
     </image>
+    
+    <item>
+      <title>Object Detection</title>
+      <link>/project/object-detection/</link>
+      <pubDate>Wed, 10 Jun 2020 21:43:12 +0530</pubDate>
+      <guid>/project/object-detection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Smart Anti Breach</title>
+      <link>/project/smart-anti-breach/</link>
+      <pubDate>Wed, 10 Jun 2020 21:38:15 +0530</pubDate>
+      <guid>/project/smart-anti-breach/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android chat application : Zappchat (from Rivchat)</title>
+      <link>/project/zappchat/</link>
+      <pubDate>Wed, 10 Jun 2020 21:36:51 +0530</pubDate>
+      <guid>/project/zappchat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Face Recognition using Python and OpenCV Haarcascades</title>
+      <link>/project/face-recognition/</link>
+      <pubDate>Wed, 10 Jun 2020 20:45:03 +0530</pubDate>
+      <guid>/project/face-recognition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optical Flow using OpenCV and Python</title>
+      <link>/project/optical-flow/</link>
+      <pubDate>Tue, 09 Jun 2020 22:26:21 +0530</pubDate>
+      <guid>/project/optical-flow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Canny Edge Detection using OpenCV and C&#43;&#43;</title>
+      <link>/project/canny-edge-detection/</link>
+      <pubDate>Tue, 09 Jun 2020 22:21:49 +0530</pubDate>
+      <guid>/project/canny-edge-detection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Find Dominant Color from an image using OpenCV and C&#43;&#43;</title>
+      <link>/project/find-dominant-color/</link>
+      <pubDate>Tue, 09 Jun 2020 22:17:31 +0530</pubDate>
+      <guid>/project/find-dominant-color/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Understanding Confusion matrix for machine learning in a simple way</title>
@@ -31,10 +87,12 @@ columns : Contain predicted labels by the classifier trained on the customer sur
 &lt;p&gt;We know that such evalutaion metrics shows the models ability to correctly predict or seperate the classes.
 We will be also discussing f1-score here which is also important to learn along with confusion matrix.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/ashwin-phadke/implementations-and-guides/blob/master/wiki_contents/confmatrix.jpg&#34; alt=&#34;Matrix&#34; title=&#34;Matrix Image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;The confusion matrix helps you measure some of very important metrics to assess performance of your model like :&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;-  Precision
--  Recall
--  Accuracy and plot ROC-AUC curve too
+&lt;p&gt;The confusion matrix helps you measure some of very important metrics to assess performance of your model like .&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- Precision.
+
+- Recall.
+
+- Accuracy and plot ROC-AUC curve too.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let us first dive into ddefining certain terminologies to better understand the concept of confusion matrix.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;- True Positive : Model predicted true and it is correct as per labels.

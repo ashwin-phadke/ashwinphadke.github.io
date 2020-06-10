@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android | Ashwin Phadke</title>
+    <link>/tag/android/</link>
+      <atom:link href="/tag/android/index.xml" rel="self" type="application/rss+xml" />
+    <description>Android</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Wed, 10 Jun 2020 21:38:15 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>Android</title>
+      <link>/tag/android/</link>
+    </image>
+    
+    <item>
+      <title>Smart Anti Breach</title>
+      <link>/project/smart-anti-breach/</link>
+      <pubDate>Wed, 10 Jun 2020 21:38:15 +0530</pubDate>
+      <guid>/project/smart-anti-breach/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android chat application : Zappchat (from Rivchat)</title>
+      <link>/project/zappchat/</link>
+      <pubDate>Wed, 10 Jun 2020 21:36:51 +0530</pubDate>
+      <guid>/project/zappchat/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

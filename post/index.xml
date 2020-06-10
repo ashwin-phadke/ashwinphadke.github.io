@@ -31,10 +31,12 @@ columns : Contain predicted labels by the classifier trained on the customer sur
 &lt;p&gt;We know that such evalutaion metrics shows the models ability to correctly predict or seperate the classes.
 We will be also discussing f1-score here which is also important to learn along with confusion matrix.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/ashwin-phadke/implementations-and-guides/blob/master/wiki_contents/confmatrix.jpg&#34; alt=&#34;Matrix&#34; title=&#34;Matrix Image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;The confusion matrix helps you measure some of very important metrics to assess performance of your model like :&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;-  Precision
--  Recall
--  Accuracy and plot ROC-AUC curve too
+&lt;p&gt;The confusion matrix helps you measure some of very important metrics to assess performance of your model like .&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- Precision.
+
+- Recall.
+
+- Accuracy and plot ROC-AUC curve too.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let us first dive into ddefining certain terminologies to better understand the concept of confusion matrix.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;- True Positive : Model predicted true and it is correct as per labels.
