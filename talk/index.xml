@@ -5,12 +5,20 @@
     <link>/talk/</link>
       <atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent &amp; Upcoming Talks</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Mon, 08 Jun 2020 23:09:18 +0530</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Wed, 17 Jun 2020 18:00:00 +0530</lastBuildDate>
     <image>
       <url>/img/avatar</url>
       <title>Recent &amp; Upcoming Talks</title>
       <link>/talk/</link>
     </image>
+    
+    <item>
+      <title>[Invited]Introduction to Deep Learning using Tensorflow</title>
+      <link>/talk/intro-to-deep-learning/</link>
+      <pubDate>Wed, 17 Jun 2020 18:00:00 +0530</pubDate>
+      <guid>/talk/intro-to-deep-learning/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Invited to talk about Understanding evaluation metrics</title>
