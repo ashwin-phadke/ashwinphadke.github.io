@@ -5,12 +5,20 @@
     <link>/project/</link>
       <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Projects</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Wed, 10 Jun 2020 21:43:12 +0530</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Sun, 14 Jun 2020 22:02:15 +0530</lastBuildDate>
     <image>
       <url>/img/avatar</url>
       <title>Projects</title>
       <link>/project/</link>
     </image>
+    
+    <item>
+      <title>Object Detection app using TensorFlow and Flask</title>
+      <link>/project/cvplayground/</link>
+      <pubDate>Sun, 14 Jun 2020 22:02:15 +0530</pubDate>
+      <guid>/project/cvplayground/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Object Detection</title>
