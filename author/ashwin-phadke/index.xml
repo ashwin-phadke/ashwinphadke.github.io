@@ -94,7 +94,7 @@ I have mostly used the OpenCV library as available from pip or by installing whe
     <item>
       <title>Getting started with SQL server on Linux (using Azure data studio)</title>
       <link>/post/my-article-name/</link>
-      <pubDate>Tue, 09 Jun 2020 20:42:55 +0530</pubDate>
+      <pubDate>Tue, 03 Mar 2020 20:42:55 +0530</pubDate>
       <guid>/post/my-article-name/</guid>
       <description>&lt;p&gt;Here is a guide to getting started with SQL Server and Azure Data Studio on Linux.&lt;/p&gt;
 &lt;p&gt;When I was starting on in my career , databases always meant the MySQL and PHP way to implement anything. However even though MySQL is really a gem SQL Server and it&amp;rsquo;s functionality gives you the full enterprise like experience and ease to implement into your code and especially the activity manager aka activity monitor which I fell for immediately.&lt;/p&gt;
