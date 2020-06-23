@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="">
+  <meta name="description" content="Background During a very recent webinar where I was a speaker for the topic Deep learning with TensorFlow I repeatedly was asked a question regarding how would one really define their own layers, parameter and how they work so as to watch it do the magic while showing them some notebooks that had parameters to the layers that we regularly use.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/project/cvplayground/">
+  <link rel="alternate" hreflang="en-us" href="/post/build-layers-tf-python/">
 
   
 
@@ -254,7 +254,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/project/cvplayground/">
+  <link rel="canonical" href="/post/build-layers-tf-python/">
 
   
   
@@ -272,15 +272,15 @@
   <meta property="twitter:creator" content="@ashwinphadke1">
   
   <meta property="og:site_name" content="Ashwin Phadke">
-  <meta property="og:url" content="/project/cvplayground/">
-  <meta property="og:title" content="Object Detection app using TensorFlow and Flask | Ashwin Phadke">
-  <meta property="og:description" content=""><meta property="og:image" content="/project/cvplayground/featured.jpg">
-  <meta property="twitter:image" content="/project/cvplayground/featured.jpg"><meta property="og:locale" content="en-us">
+  <meta property="og:url" content="/post/build-layers-tf-python/">
+  <meta property="og:title" content="Build your own layers for deep learning models using TensorFlow 2.0 and Python | Ashwin Phadke">
+  <meta property="og:description" content="Background During a very recent webinar where I was a speaker for the topic Deep learning with TensorFlow I repeatedly was asked a question regarding how would one really define their own layers, parameter and how they work so as to watch it do the magic while showing them some notebooks that had parameters to the layers that we regularly use."><meta property="og:image" content="/img/avatar">
+  <meta property="twitter:image" content="/img/avatar"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-06-14T22:02:15&#43;05:30">
+      <meta property="article:published_time" content="2020-06-23T21:57:14&#43;05:30">
     
-    <meta property="article:modified_time" content="2020-06-14T22:02:15&#43;05:30">
+    <meta property="article:modified_time" content="2020-06-23T21:57:14&#43;05:30">
   
 
   
@@ -292,6 +292,8 @@
 
 
 
+
+  
 
 
 
@@ -299,19 +301,15 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/project/cvplayground/"
+    "@id": "/post/build-layers-tf-python/"
   },
-  "headline": "Object Detection app using TensorFlow and Flask",
+  "headline": "Build your own layers for deep learning models using TensorFlow 2.0 and Python",
   
-  "image": [
-    "/project/cvplayground/featured.jpg"
-  ],
-  
-  "datePublished": "2020-06-14T22:02:15+05:30",
-  "dateModified": "2020-06-14T22:02:15+05:30",
+  "datePublished": "2020-06-23T21:57:14+05:30",
+  "dateModified": "2020-06-23T21:57:14+05:30",
   
   "author": {
     "@type": "Person",
@@ -326,7 +324,7 @@
       "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": ""
+  "description": "Background During a very recent webinar where I was a speaker for the topic Deep learning with TensorFlow I repeatedly was asked a question regarding how would one really define their own layers, parameter and how they work so as to watch it do the magic while showing them some notebooks that had parameters to the layers that we regularly use."
 }
 </script>
 
@@ -374,7 +372,7 @@
 
 
 
-  <title>Object Detection app using TensorFlow and Flask | Ashwin Phadke</title>
+  <title>Build your own layers for deep learning models using TensorFlow 2.0 and Python | Ashwin Phadke</title>
 
 </head>
 
@@ -657,7 +655,7 @@
 </nav>
 
 
-  <article class="article article-project">
+  <article class="article">
 
   
 
@@ -672,26 +670,18 @@
 
 
 
-
-
-
-
-
-
-
+  
 
   
+  
+  
+<div class="article-container pt-3">
+  <h1>Build your own layers for deep learning models using TensorFlow 2.0 and Python</h1>
+
+  
+
   
     
-  
-
-
-<div class="article-container pt-3">
-  <h1>Object Detection app using TensorFlow and Flask</h1>
-
-  
-
-  
 
 
 <div class="article-metadata">
@@ -705,12 +695,17 @@
     
       
     
-    Jun 14, 2020
+    Jun 23, 2020
   </span>
   
 
   
 
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
   
 
   
@@ -722,7 +717,7 @@
 
 </div>
 
-  
+    
 
 
 
@@ -738,8 +733,6 @@
 
 <div class="btn-links mb-3">
   
-  <a class="btn btn-outline-primary my-1" href="https://github.com/ashwin-phadke/cvplayground" target="_blank" rel="noopener">Go to Project Site</a>
-  
   
 
 
@@ -756,16 +749,14 @@
 
 
 
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1" href="https://github.com/ashwin-phadke/cvplayground" target="_blank" rel="noopener">
-  Code
-</a>
 
 
 
+  
+  <a class="btn btn-outline-primary my-1 mr-1" href="/project/cvplayground/">
+    Project
+  </a>
+  
 
 
 
@@ -780,14 +771,7 @@
 </div>
 
 
-</div>
-
-
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 378px;">
-  <div style="position: relative">
-    <img src="/project/cvplayground/featured_hu86ea439bd6f636bff2726edd1881e035_168080_720x0_resize_q90_lanczos.jpg" alt="" class="featured-image">
-    
-  </div>
+  
 </div>
 
 
@@ -795,7 +779,149 @@
   <div class="article-container">
 
     <div class="article-style">
-      
+      <h3 id="background">Background</h3>
+<p>During a very recent 
+<a href="https://ashwin-phadke.github.io/talk/intro-to-deep-learning/" target="_blank" rel="noopener">webinar</a> where I was a speaker for the topic <code>Deep learning with TensorFlow</code> I repeatedly was asked a question regarding how would one really define their own layers, parameter and how they work so as to watch it do the magic while showing them some notebooks that had parameters to the layers that we regularly use. This prompted me to write a blog explaining layers and their parameters.</p>
+<h3 id="building-tensorflow-layers">Building Tensorflow Layers</h3>
+<p>The <code>tf.keras.layers.Layer</code> or also written as <code>tf.compat.v1.keras.layers.Layer</code> gives you easy and effective access to start writing your own layers in building the desired convolutional neural network.
+Keras backend is well integrated with TensorFlow giving you ease of coding your layers at a high level understanding and handles a ot of code that you would otherwise would&rsquo;ve written.</p>
+<p>Writing your own layers is not that daunting if you have a certain understanding on how they work.
+According to the TensorFlow documentation</p>
+<blockquote>
+<p>Many machine learning models are expressible as the composition and stacking of relatively simple layers, and TensorFlow provides both a set of many common layers as a well as easy ways for you to write your own application-specific layers either from scratch or as the composition of existing layers.</p>
+</blockquote>
+<p>Which is pretty much True in the sense that these layers can be written like calling functions with arguments. Here in the <code>tf.keras.layers</code> package the <code>layers</code> that we want to define are treated as objects. So to construct a simple layer by yourself all you need is to construct the layer object and you are pretty much good to go.</p>
+<p>Some widely used layers include</p>
+<ol>
+<li>Conv1D</li>
+<li>Conv2D</li>
+<li>AvgPool1D</li>
+<li>Dense</li>
+<li>Flatten</li>
+<li>LSTMCell</li>
+</ol>
+<p>and many 
+<a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers#classes_2" target="_blank" rel="noopener">more</a>.
+To start defining your own layers is no hidden secret and can be easily achieved by doing (we will be looking at Sequential layers here)</p>
+<pre><code class="language-python">model = tf.keras.models.Sequntial()
+
+or
+
+
+model = tf.compat.v1.keras.Sequential()
+
+or
+
+
+model = tf.compat.v1.keras.models.Sequential()
+</code></pre>
+<p>Here the most important task of defining the type of your layers is done.
+Let&rsquo;s look at some of these layers and their functions one by one.
+Once you are ready with your network or at least have an idea of how many layers you would like to write for a standard result you can proceed to now defining them. What Sequential essentially does it groups a linear stack of layers.
+Once you have done that now you are ready to construct your own layer objects.</p>
+<p>After declaring above you can either do</p>
+<pre><code class="language-python">model = tf.keras.models.Sequential()
+
+model.add(tf.keras.layers.Dense(8, input_dim=16))
+</code></pre>
+<p>OR</p>
+<pre><code class="language-python">model = tf.keras.Sequentail([ tf.keras.layers.Dense(8, input_dim=18)])
+</code></pre>
+<p>Both these methods will help you achieve your goal of writing your own layers. To begin with let&rsquo;s build our own complete network and understand each parameters.</p>
+<pre><code class="language-python">model = tf.keras.models.Sequential([
+  
+  tf.keras.layers.Conv2D(64, (3,3), activation='relu', input_shape=(28, 28, 1)),
+
+  # Max pooling as we will take maximum value which is a 2X2 poll so every 4 pixels go to 1
+  tf.keras.layers.MaxPooling2D(2, 2),
+
+  # Another layer
+  tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
+  tf.keras.layers.MaxPooling2D(2,2),
+
+  # Converts the input to 1D set instead of the square we saw earlier
+  tf.keras.layers.Flatten(),
+
+  # Adds a layer of neurons
+  tf.keras.layers.Dense(128, activation='relu'),
+
+  # The last layers have specific number of neurons, ask me why! :)
+
+  tf.keras.layers.Dense(10, activation='softmax')
+])
+
+</code></pre>
+<p>Now once we have built our layer, let&rsquo;s try to understand it one by one.
+We have already seen in brief about Sequential(), let&rsquo;s now dive into the layers. The module <code>tf.keras.layers.Layer</code> has different classes defined for all different kinds of models some of which are also listed above.</p>
+<ul>
+<li>
+<p>In the first layer <code>Conv2D(64, (3,3), activation='relu', input_shape=(28, 28, 1)),</code> refers to class 
+<a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D" target="_blank" rel="noopener">Conv2D</a>.</p>
+<ul>
+<li>This layers creates a conv kernel to convolve with input to produce tensors.</li>
+<li>Activation function needs to be defined here and also if this layer is being used as the first layer in this model as shown in this example it is important to include <code>input_shape</code> as in <code>input_shape = (128, 128, 3)</code> for an image that is 128 X 128 pixel wide with three channels mainly RGB or use 1if it is a grey scale image.</li>
+<li>Arguments here include :
+<ul>
+<li>the filter size as 64 , which creates 64 filters to convolve over the input.</li>
+<li>the size of the kernel which is defined as (3, 3).</li>
+<li>activation is set to as <code>relu</code>, what ReLU activation in brief means that the output values from this activation function are positives as all values in the left of the number line are counted as <code>0</code>.</li>
+<li>the input_shape as defined above here is an grey scale image with size 28 X 28 pixels hence (28, 28, 1). Input shape can be defined as <code>(batch_size, rows, cols, channels)</code> to understand order and meaning of the parameters.</li>
+<li>other arguments which can be added are <code>strides</code>, <code>padding</code>, <code>use_bias</code> and many more based on the requirements.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The second layer <code>tf.keras.layers.MaxPooling2D(2, 2),</code> is a maxpooling layer for which more information can be found 
+<a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/MaxPool2D" target="_blank" rel="noopener">here</a>.</p>
+<ul>
+<li>This layers creates a max pooling operation for 2D spatial data.</li>
+<li>Arguments here include :
+<ul>
+<li>MaxPooling is used to down-sample the data or the input to it by taking the maximum value from the window defined by <code>pool_size</code> which here is (2, 2).</li>
+<li>The window is shifted by strides which are values by which we define by how many pixels our window moves ahead through the input representations.</li>
+<li>If padding is defined as <code>same</code> the output shape becomes <code>output shape = input_shape / strides</code> and <code>output shape = (input_shape - pool_size + 1) / strides)</code> when padding size is defined as <code>valid</code>.</li>
+<li>This returns 4D tensor representing maximum pooled values.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The third layer <code>tf.keras.layers.Flatten()</code> which is a layer in between the convolutional layer and a fully connected layer.</p>
+<ul>
+<li>As evident from the name it flattens the input into a 1D vector that can be fed to a fully connected classifier layer.</li>
+<li>The main argument here <code>data_format</code> as when <code>inputs are shaped (batch,) without a channel dimension, then flattening adds an extra channel dimension and output shapes are (batch, 1)</code> - TFDocs.
+In this case the input is 28X28X3 with 64 filter which makes the output of the Flatten layer to <code>64X28X28 = 50176</code> as a 1D vector instead of multi-dimension as in previous layers.</li>
+</ul>
+</li>
+<li>
+<p>The fourth layer <code>  tf.keras.layers.Dense(10, activation='softmax')</code> adds a single layer to your network which is densely or fully connected.</p>
+<ul>
+<li>Each neuron declared here is connected to or receives input from all neurons from previous layers hence the name as densely connected.</li>
+<li>Dense implements the operation: output = activation(dot(input, kernel) + bias) where activation is the element-wise activation function passed as the activation argument, kernel is a weights matrix created by the layer, and bias is a bias vector created by the layer (only applicable if use_bias is True). - TFDocs</li>
+<li>The final layer is the layer that can be described here as output layer. The number <code>10</code> here is the number of classes that we are fed or the number of outputs that are to be observed.</li>
+<li>One needs to understand that the output is not however a one shot yes or no but a list of probabilities of all the classes wherein then the highest probability is the prediction done by the model.</li>
+<li>More importantly we are using the function <code>softmax</code> here which in simple words mean that the highest probability will be treated as 1 and all others as 0. This might sound somewhat like maxpool but these are two different concepts. Softmax function can also be loosely defined as the function that converts logits to probabilities that sum to 1. In short if the result of  classes is like [0.1, 0.4, 0.5] then the Softmax will return [0, 0, 1] . Known use-cases of softmax regression are in discriminative models such as Cross-Entropy and Noise Contrastive Estimation.</li>
+</ul>
+</li>
+</ul>
+<p>Writing your own layers becomes more important when you want to build a fully custom solution which otherwise cannot be achieved using transfer learning(although being an decent method if you want a prototype). This helps you understand the tool you are using here TensorFlow and also get an understanding of how SoTA neural netwrks work and what do those layers mean or how the authors reached to those specific parameter values. We have networks ranging from 20 layers to more than a 100 with huge complexity which we aim to ease here by understanding the design process.</p>
+<p>I would also suggest going through the Tensorflow documentation extensively as they are a offiial resource of class and functions available in the TensorFlow API with a very good description of every parameter in detail.</p>
+<h3 id="in-a-jiffy">In a jiffy</h3>
+<p>We took a look at a higher level understanding of various TensorFlow layers, what do they mean and what do their arguments mean in brief. You can start building your own model from scratch(well let&rsquo;s say just calling classes and functions :) ) and test them out by tuning various parameters mentioned and from the function definitions too and maybe you&rsquo;ll soon have a best performing model in your profile. Happy coding!</p>
+<p>
+<a href="https://colab.research.google.com/drive/11dXFxMvuSdqhc2a63tvzJBcZ2IB4ESVL#scrollTo=PqNIM4OAkAZ1" target="_blank" rel="noopener">Code for reference</a> |
+
+<a href="https://github.com/ashwin-phadke" target="_blank" rel="noopener">GitHub</a> |
+
+<a href="https://ashwin-phadke.github.io" target="_blank" rel="noopener">Website</a> |</p>
+<p>References :</p>
+<p>[1] Tensorflow documentation - <a href="https://www.tensorflow.org/api_docs/python/tf">https://www.tensorflow.org/api_docs/python/tf</a></p>
+<p>[2] Softmax function simpplified - <a href="https://towardsdatascience.com/softmax-function-simplified-714068bf8156">https://towardsdatascience.com/softmax-function-simplified-714068bf8156</a></p>
+<p>[3] Wikipedia</p>
+<p>[4] Coursera - Tensorflow lectures by Laurence Moroney</p>
+<hr>
+
     </div>
 
     
@@ -804,12 +930,6 @@
 
 
 
-
-<div class="article-tags">
-  
-  <a class="badge badge-light" href="/tag/deep-learning/">Deep Learning</a>
-  
-</div>
 
 
 
@@ -824,7 +944,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/project/cvplayground/&amp;text=Object%20Detection%20app%20using%20TensorFlow%20and%20Flask" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/build-layers-tf-python/&amp;text=Build%20your%20own%20layers%20for%20deep%20learning%20models%20using%20TensorFlow%202.0%20and%20Python" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -837,7 +957,7 @@
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/project/cvplayground/&amp;t=Object%20Detection%20app%20using%20TensorFlow%20and%20Flask" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/build-layers-tf-python/&amp;t=Build%20your%20own%20layers%20for%20deep%20learning%20models%20using%20TensorFlow%202.0%20and%20Python" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -850,7 +970,7 @@
       
       
       <li>
-        <a href="mailto:?subject=Object%20Detection%20app%20using%20TensorFlow%20and%20Flask&amp;body=/project/cvplayground/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Build%20your%20own%20layers%20for%20deep%20learning%20models%20using%20TensorFlow%202.0%20and%20Python&amp;body=/post/build-layers-tf-python/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -863,7 +983,7 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/project/cvplayground/&amp;title=Object%20Detection%20app%20using%20TensorFlow%20and%20Flask" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/build-layers-tf-python/&amp;title=Build%20your%20own%20layers%20for%20deep%20learning%20models%20using%20TensorFlow%202.0%20and%20Python" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -876,7 +996,7 @@
       
       
       <li>
-        <a href="whatsapp://send?text=Object%20Detection%20app%20using%20TensorFlow%20and%20Flask%20/project/cvplayground/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Build%20your%20own%20layers%20for%20deep%20learning%20models%20using%20TensorFlow%202.0%20and%20Python%20/post/build-layers-tf-python/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1011,7 +1131,7 @@
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/project/object-detection/" rel="prev">Object Detection</a>
+    <a href="/post/install-opencv/" rel="prev">Installing OpenCV from source on Fedora 31</a>
   </div>
   
 </div>
@@ -1024,291 +1144,11 @@
 
   
   
-  <div class="article-widget content-widget-hr">
-    <h3>Related</h3>
-    <ul>
-      
-      <li><a href="/project/object-detection/">Object Detection</a></li>
-      
-      <li><a href="/project/face-recognition/">Face Recognition using Python and OpenCV Haarcascades</a></li>
-      
-      <li><a href="/project/optical-flow/">Optical Flow using OpenCV and Python</a></li>
-      
-      <li><a href="/project/canny-edge-detection/">Canny Edge Detection using OpenCV and C&#43;&#43;</a></li>
-      
-      <li><a href="/project/find-dominant-color/">Find Dominant Color from an image using OpenCV and C&#43;&#43;</a></li>
-      
-    </ul>
-  </div>
-  
 
 
 
 
 
-    <div class="project-related-pages content-widget-hr">
-      
-      
-
-      
-      
-      
-        <h2>Posts</h2>
-        
-          
-            
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/post/build-layers-tf-python/" >Build your own layers for deep learning models using TensorFlow 2.0 and Python</a>
-    </h3>
-
-    
-    <div class="article-style">
-      Background During a very recent webinar where I was a speaker for the topic Deep learning with TensorFlow I repeatedly was asked a question regarding how would one really define their own layers, parameter and how they work so as to watch it do the magic while showing them some notebooks that had parameters to the layers that we regularly use.
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Jun 23, 2020
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    8 min read
-  </span>
-  
-
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-          
-        
-      
-
-      
-      
-      
-
-      
-      
-      
-        <h2>Talks</h2>
-        
-          
-            
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/talk/intro-to-deep-learning/" >[Invited]Introduction to Deep Learning using Tensorflow</a>
-    </h3>
-
-    
-    <div class="article-style">
-      A brief introduction to deep learning-computer vision and using tensorflow to building models.
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-      <div>
-        <span>
-          Jun 17, 2020 6:00 PM &mdash; 8:00 PM
-        </span>
-        
-      </div>
-      
-
-      
-      <div>
-        
-
-  
-  <span>Ashwin Phadke</span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://colab.research.google.com/drive/11dXFxMvuSdqhc2a63tvzJBcZ2IB4ESVL#scrollTo=PqNIM4OAkAZ1" target="_blank" rel="noopener">
-  Code
-</a>
-
-
-
-
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/project/cvplayground/">
-    Project
-  </a>
-  
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://speakerdeck.com/ashwinphadke12/introduction-to-deep-learning-with-tensorflow" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-
-
-
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://twitter.com/ashwinphadke1" target="_blank" rel="noopener">
-    <i class="fab fa-twitter mr-1"></i>
-    Ashwin Phadke
-  </a>
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/ashwin-phadke" target="_blank" rel="noopener">
-    <i class="fab fa-github mr-1"></i>
-    Ashwin Phadke
-  </a>
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-    
-    <a href="/talk/intro-to-deep-learning/" >
-      <img src="/talk/intro-to-deep-learning/featured_hu40233a47cd501dcee368b9c40ac824cc_9427_150x0_resize_lanczos_2.png" alt="[Invited]Introduction to Deep Learning using Tensorflow">
-    </a>
-    
-  </div>
-</div>
-
-          
-        
-      
-    </div>
   </div>
 </article>
 
