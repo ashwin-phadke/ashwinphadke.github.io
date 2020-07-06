@@ -5,12 +5,30 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>Ashwin Phadke</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Tue, 23 Jun 2020 21:57:14 +0530</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Mon, 06 Jul 2020 20:35:05 +0530</lastBuildDate>
     <image>
       <url>/img/avatar</url>
       <title>Ashwin Phadke</title>
       <link>/</link>
     </image>
+    
+    <item>
+      <title>Keras Tuner With Tensorflow</title>
+      <link>/talk/keras-tuner-with-tensorflow/</link>
+      <pubDate>Mon, 06 Jul 2020 20:35:05 +0530</pubDate>
+      <guid>/talk/keras-tuner-with-tensorflow/</guid>
+      <description>&lt;p&gt;Dive into an overview of hyperparameter tuning ro find the best hyperparameters for your deep learning model. The keras-tuner package can be used to define a search space for multiple hyperparameters like learning rate, optimizers, units among many others to facilite optimal hyperparameter search to obtain the best model for the datatset.&lt;/p&gt;
+&lt;p&gt;Summary of the talk :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Brief about convolutions, pooling.&lt;/li&gt;
+&lt;li&gt;Keras Tuner introduction.&lt;/li&gt;
+&lt;li&gt;tunable hyperparameters.&lt;/li&gt;
+&lt;li&gt;Overview of built in algorithms for hyperparameter tuning like Hyperband.&lt;/li&gt;
+&lt;li&gt;Code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+</description>
+    </item>
     
     <item>
       <title>Build your own layers for deep learning models using TensorFlow 2.0 and Python</title>
