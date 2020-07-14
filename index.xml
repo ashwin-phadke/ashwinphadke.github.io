@@ -17,14 +17,14 @@
       <link>/talk/keras-tuner-with-tensorflow/</link>
       <pubDate>Sat, 18 Jul 2020 11:00:00 +0530</pubDate>
       <guid>/talk/keras-tuner-with-tensorflow/</guid>
-      <description>&lt;p&gt;Dive into an overview of hyperparameter tuning ro find the best hyperparameters for your deep learning model. The keras-tuner package can be used to define a search space for multiple hyperparameters like learning rate, optimizers, units among many others to facilite optimal hyperparameter search to obtain the best model for the datatset.&lt;/p&gt;
+      <description>&lt;p&gt;Dive into an overview of hyperparameter tuning ro find the best hyperparameters for your deep learning model. The keras-tuner package can be used to define a search space for multiple hyperparameters like learning rate, optimizers, units among many others to facilite optimal hyperparameter search to obtain the best model for your desired datatset.&lt;/p&gt;
 &lt;p&gt;Summary of the talk :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Brief about convolutions, pooling.&lt;/li&gt;
-&lt;li&gt;Keras Tuner introduction.&lt;/li&gt;
-&lt;li&gt;tunable hyperparameters.&lt;/li&gt;
+&lt;li&gt;Introduction to Keras Tuner.&lt;/li&gt;
+&lt;li&gt;Tunable hyperparameters.&lt;/li&gt;
 &lt;li&gt;Overview of built in algorithms for hyperparameter tuning like Hyperband.&lt;/li&gt;
-&lt;li&gt;Code&lt;/li&gt;
+&lt;li&gt;Code  : Google colab demo&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 </description>
