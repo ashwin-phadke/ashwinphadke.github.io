@@ -273,7 +273,7 @@
   
   <meta property="og:site_name" content="Ashwin Phadke">
   <meta property="og:url" content="/post/install-opencv/">
-  <meta property="og:title" content="Installing OpenCV from source on Fedora 31 | Ashwin Phadke">
+  <meta property="og:title" content="Installing OpenCV with contrib extra modules from source on Fedora Linux | Ashwin Phadke">
   <meta property="og:description" content="Why the sudden need? I have mostly used the OpenCV library as available from pip or by installing wheel until I required some more essential features that are not available from those pre built binaries."><meta property="og:image" content="/img/avatar">
   <meta property="twitter:image" content="/img/avatar"><meta property="og:locale" content="en-us">
   
@@ -306,7 +306,7 @@
     "@type": "WebPage",
     "@id": "/post/install-opencv/"
   },
-  "headline": "Installing OpenCV from source on Fedora 31",
+  "headline": "Installing OpenCV with contrib extra modules from source on Fedora Linux",
   
   "datePublished": "2020-06-09T20:45:46+05:30",
   "dateModified": "2020-06-09T20:45:46+05:30",
@@ -372,7 +372,7 @@
 
 
 
-  <title>Installing OpenCV from source on Fedora 31 | Ashwin Phadke</title>
+  <title>Installing OpenCV with contrib extra modules from source on Fedora Linux | Ashwin Phadke</title>
 
 </head>
 
@@ -676,7 +676,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Installing OpenCV from source on Fedora 31</h1>
+  <h1>Installing OpenCV with contrib extra modules from source on Fedora Linux</h1>
 
   
 
@@ -764,19 +764,19 @@ I have mostly used the OpenCV library as available from pip or by installing whe
 <li>Some dependencies need to be taken care of before building OpenCV for use. These dependencies are <strong>IMPORTANT</strong> to facilitate the proper installation of opencv on the system and avoiding errors like <code>no module found</code> and etc even after having a successful install.</li>
 </ul>
 <p>The must have dependenices :</p>
-<pre><code>         * `dnf install cmake`
-         * `dnf install python-devel numpy`
-         * `dnf install gcc gcc-c++`
-         * `dnf install make`
+<pre><code>         * dnf install cmake
+         * dnf install python-devel numpy
+         * dnf install gcc gcc-c++
+         * dnf install make
 </code></pre>
 <ul>
 <li>
 <p>GTK support :</p>
-<pre><code>    * `dnf install gtk2-devel`
-    * `dnf install libdc1394-devel`
-    * `dnf install libv4l-devel`
-    * `dnf install ffmpeg-devel`
-    * `dnf install gstreamer-plugins-base-devel`
+<pre><code>    * dnf install gtk2-devel
+    * dnf install libdc1394-devel
+    * dnf install libv4l-devel
+    * dnf install ffmpeg-devel
+    * dnf install gstreamer-plugins-base-devel
 </code></pre>
 </li>
 <li>
@@ -794,23 +794,40 @@ I have mostly used the OpenCV library as available from pip or by installing whe
 <p>Installing OpenCV - OpenCV is typically installed using CMake as(explanation from the documentation) - Installation has to be configured with CMake. It specifies which modules are to be installed, installation path, which additional libraries to be used, whether documentation and examples to be compiled etc. Below command is normally used for configuration (executed from build folder).</p>
 </li>
 <li>
-<p>To configure build parameters using CMake you will pass the following command for minimal installation in release mode <code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..</code></p>
+<p>To configure build parameters using CMake you will pass the following command for minimal installation in release mode</p>
+<p><code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..</code></p>
 </li>
 <li>
-<p>If you have installed the threading building blocks then you pass
-<code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_TBB=ON</code></p>
+<p>If you have installed the threading building blocks then you pass</p>
+<p><code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_TBB=ON</code></p>
 </li>
 <li>
-<p>If you have installed the eigen library then do
-<code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON</code>  .</p>
+<p>If you have installed the eigen library then do</p>
+<p><code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON</code>  .</p>
 </li>
 <li>
-<p>If installed both then
-<code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON</code></p>
+<p>If installed both then</p>
+<p><code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON</code></p>
 </li>
 <li>
-<p>Finally execute <code>make install</code> to successfully build and install the OpenCV library on your Fedora machine.</p>
+<p>Now to also include non free algorithms(optional) you will need to add the specific parameter to it as :</p>
+<p><code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON -D OPENCV_ENABLE_NONFREE=ON</code></p>
 </li>
+<li>
+<p>We have now set up our opencv installation command, many a times opencv&rsquo;s extra modules also help you solve many computer vision challentasks and it is better to have the contrib i.e extra modules with opencv as a additional step. Hence to do so first clone the opencv contrib module from Github using</p>
+<p><code>git clone https://github.com/opencv/opencv_contrib.git</code></p>
+</li>
+</ul>
+<p>to a seperate folder than your opencv directory.</p>
+<ul>
+<li>
+<p>Doing so it is then required to pass the path to the downloaded contrib modules to the build configuration of opencv. To do that use the follwoing command</p>
+<p><code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=&lt;opencv_contrib_path&gt;/modules &lt;opencv_source_directory_path&gt;</code> .</p>
+</li>
+</ul>
+<p>This will serve as your final command to installl opencv with all the required modules.</p>
+<ul>
+<li>Finally execute <code>make install</code> to successfully build and install the OpenCV library on your Linux Fedora machine.</li>
 </ul>
 <hr>
 
@@ -836,7 +853,7 @@ I have mostly used the OpenCV library as available from pip or by installing whe
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/install-opencv/&amp;text=Installing%20OpenCV%20from%20source%20on%20Fedora%2031" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/install-opencv/&amp;text=Installing%20OpenCV%20with%20contrib%20extra%20modules%20from%20source%20on%20Fedora%20Linux" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -849,7 +866,7 @@ I have mostly used the OpenCV library as available from pip or by installing whe
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/install-opencv/&amp;t=Installing%20OpenCV%20from%20source%20on%20Fedora%2031" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/install-opencv/&amp;t=Installing%20OpenCV%20with%20contrib%20extra%20modules%20from%20source%20on%20Fedora%20Linux" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -862,7 +879,7 @@ I have mostly used the OpenCV library as available from pip or by installing whe
       
       
       <li>
-        <a href="mailto:?subject=Installing%20OpenCV%20from%20source%20on%20Fedora%2031&amp;body=/post/install-opencv/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Installing%20OpenCV%20with%20contrib%20extra%20modules%20from%20source%20on%20Fedora%20Linux&amp;body=/post/install-opencv/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -875,7 +892,7 @@ I have mostly used the OpenCV library as available from pip or by installing whe
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/install-opencv/&amp;title=Installing%20OpenCV%20from%20source%20on%20Fedora%2031" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/install-opencv/&amp;title=Installing%20OpenCV%20with%20contrib%20extra%20modules%20from%20source%20on%20Fedora%20Linux" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -888,7 +905,7 @@ I have mostly used the OpenCV library as available from pip or by installing whe
       
       
       <li>
-        <a href="whatsapp://send?text=Installing%20OpenCV%20from%20source%20on%20Fedora%2031%20/post/install-opencv/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Installing%20OpenCV%20with%20contrib%20extra%20modules%20from%20source%20on%20Fedora%20Linux%20/post/install-opencv/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>

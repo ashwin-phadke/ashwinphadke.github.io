@@ -39,7 +39,7 @@
     </item>
     
     <item>
-      <title>Installing OpenCV from source on Fedora 31</title>
+      <title>Installing OpenCV with contrib extra modules from source on Fedora Linux</title>
       <link>/post/install-opencv/</link>
       <pubDate>Tue, 09 Jun 2020 20:45:46 +0530</pubDate>
       <guid>/post/install-opencv/</guid>
@@ -57,19 +57,19 @@ I have mostly used the OpenCV library as available from pip or by installing whe
 &lt;li&gt;Some dependencies need to be taken care of before building OpenCV for use. These dependencies are &lt;strong&gt;IMPORTANT&lt;/strong&gt; to facilitate the proper installation of opencv on the system and avoiding errors like &lt;code&gt;no module found&lt;/code&gt; and etc even after having a successful install.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The must have dependenices :&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;         * `dnf install cmake`
-         * `dnf install python-devel numpy`
-         * `dnf install gcc gcc-c++`
-         * `dnf install make`
+&lt;pre&gt;&lt;code&gt;         * dnf install cmake
+         * dnf install python-devel numpy
+         * dnf install gcc gcc-c++
+         * dnf install make
 &lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;GTK support :&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    * `dnf install gtk2-devel`
-    * `dnf install libdc1394-devel`
-    * `dnf install libv4l-devel`
-    * `dnf install ffmpeg-devel`
-    * `dnf install gstreamer-plugins-base-devel`
+&lt;pre&gt;&lt;code&gt;    * dnf install gtk2-devel
+    * dnf install libdc1394-devel
+    * dnf install libv4l-devel
+    * dnf install ffmpeg-devel
+    * dnf install gstreamer-plugins-base-devel
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -87,23 +87,40 @@ I have mostly used the OpenCV library as available from pip or by installing whe
 &lt;p&gt;Installing OpenCV - OpenCV is typically installed using CMake as(explanation from the documentation) - Installation has to be configured with CMake. It specifies which modules are to be installed, installation path, which additional libraries to be used, whether documentation and examples to be compiled etc. Below command is normally used for configuration (executed from build folder).&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;To configure build parameters using CMake you will pass the following command for minimal installation in release mode &lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To configure build parameters using CMake you will pass the following command for minimal installation in release mode&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;If you have installed the threading building blocks then you pass
-&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_TBB=ON&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If you have installed the threading building blocks then you pass&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_TBB=ON&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;If you have installed the eigen library then do
-&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON&lt;/code&gt;  .&lt;/p&gt;
+&lt;p&gt;If you have installed the eigen library then do&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON&lt;/code&gt;  .&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;If installed both then
-&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If installed both then&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Finally execute &lt;code&gt;make install&lt;/code&gt; to successfully build and install the OpenCV library on your Fedora machine.&lt;/p&gt;
+&lt;p&gt;Now to also include non free algorithms(optional) you will need to add the specific parameter to it as :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON -D OPENCV_ENABLE_NONFREE=ON&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We have now set up our opencv installation command, many a times opencv&amp;rsquo;s extra modules also help you solve many computer vision challentasks and it is better to have the contrib i.e extra modules with opencv as a additional step. Hence to do so first clone the opencv contrib module from Github using&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git clone https://github.com/opencv/opencv_contrib.git&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;to a seperate folder than your opencv directory.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Doing so it is then required to pass the path to the downloaded contrib modules to the build configuration of opencv. To do that use the follwoing command&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=&amp;lt;opencv_contrib_path&amp;gt;/modules &amp;lt;opencv_source_directory_path&amp;gt;&lt;/code&gt; .&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This will serve as your final command to installl opencv with all the required modules.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Finally execute &lt;code&gt;make install&lt;/code&gt; to successfully build and install the OpenCV library on your Linux Fedora machine.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 </description>
