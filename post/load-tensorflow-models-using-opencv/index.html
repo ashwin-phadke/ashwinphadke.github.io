@@ -1,0 +1,1480 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Ashwin Phadke">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Background : It is always a daunting task with Tensorflow sessions and standard handling of a typical Tensorflow model when you want to run inference. However, if you are an experienced developer you may also quickly go through these steps because you are already aware about how to use Tensorflow to run inference on your model.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/load-tensorflow-models-using-opencv/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-103783670-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-103783670-1', { 'anonymize_ip': true });
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/post/load-tensorflow-models-using-opencv/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@ashwinphadke1">
+  <meta property="twitter:creator" content="@ashwinphadke1">
+  
+  <meta property="og:site_name" content="Ashwin Phadke">
+  <meta property="og:url" content="/post/load-tensorflow-models-using-opencv/">
+  <meta property="og:title" content="Load Tensorflow Models Using Opencv | Ashwin Phadke">
+  <meta property="og:description" content="Background : It is always a daunting task with Tensorflow sessions and standard handling of a typical Tensorflow model when you want to run inference. However, if you are an experienced developer you may also quickly go through these steps because you are already aware about how to use Tensorflow to run inference on your model."><meta property="og:image" content="/img/avatar">
+  <meta property="twitter:image" content="/img/avatar"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-08-20T21:38:51&#43;05:30">
+    
+    <meta property="article:modified_time" content="2020-08-20T21:38:51&#43;05:30">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/load-tensorflow-models-using-opencv/"
+  },
+  "headline": "Load Tensorflow Models Using Opencv",
+  
+  "datePublished": "2020-08-20T21:38:51+05:30",
+  "dateModified": "2020-08-20T21:38:51+05:30",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Ashwin Phadke"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ashwin Phadke",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Background : It is always a daunting task with Tensorflow sessions and standard handling of a typical Tensorflow model when you want to run inference. However, if you are an experienced developer you may also quickly go through these steps because you are already aware about how to use Tensorflow to run inference on your model."
+}
+</script>
+
+  
+
+  
+
+
+  
+  
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" integrity="sha256-5VhCqFam2Cn+yjw61zbBNrbHVJ6SRydPeKopYlngbiQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" integrity="sha256-zQ0LblD/Af8vOppw18+2anxsuaz3pWYyVWi+bTvTH8Q=" crossorigin="anonymous">
+  
+  <script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#2962ff",
+          "text": "#fff"
+        },
+        "button": {
+          "background": "#fff",
+          "text": "#2962ff"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://www.cookiesandyou.com"
+      }
+    })});
+  </script>
+
+
+
+  
+
+
+
+
+
+  <title>Load Tensorflow Models Using Opencv | Ashwin Phadke</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Ashwin Phadke</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Ashwin Phadke</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Load Tensorflow Models Using Opencv</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 20, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h3 id="background-">Background :</h3>
+<p>It is always a daunting task with <code>Tensorflow</code> sessions and standard handling of a typical <code>Tensorflow</code> model when you want to run inference. However, if you are an experienced developer you may also quickly go through these steps because you are already aware about how to use <code>Tensorflow</code> to run inference on your model.
+Most of the times we use some image pre-processing over the input image before passing it to your model built using <code>Tensorflow</code>. This pre-processing is mostly handled using OpenCV or such libraries or something like <code>imutils</code> for basic handling of images or video frames.
+How about using OpenCV itself to load and run inference on your <code>Tensorflow</code> models, this is what I encountered very recently when I was stuck with a problem while using <code>Tensorflow</code> sessions, although being straightforward these <code>Tensorflow</code> sessions can sometimes take some little extra time to manage while doing inference. OpenCV handles it quite well and we are going to discuss it here in this blog post.</p>
+<h3 id="pre-requisites-">Pre-requisites :</h3>
+<p>You have been from</p>
+<pre><code>import cv2
+import tensorflow as tf
+</code></pre>
+<p>To</p>
+<pre><code>results : person - 84%
+</code></pre>
+<h3 id="loading-tf-models-using-opencv-">Loading TF models using OpenCV :</h3>
+<p>The 
+<a href="https://docs.opencv.org/master/d2/d58/tutorial_table_of_content_dnn.html" target="_blank" rel="noopener">Opencv&rsquo;s DNN module</a> hosts a variety of great features when it comes to utilizing the library for neural networks.
+One such important addition is 
+<a href="https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API" target="_blank" rel="noopener">Tensorflow&rsquo;s object detection API</a> using OpenCV&rsquo;s dnn module.
+If you have not installed OpenCV with it&rsquo;s extra modules also called as 
+<a href="https://github.com/opencv/opencv_contrib" target="_blank" rel="noopener">OpenCV Contrib</a> modules you can read one of my previous post on how to do that 
+<a href="https://ashwin-phadke.github.io/post/install-opencv/" target="_blank" rel="noopener">here</a>.</p>
+<h3 id="getting-started-">Getting started :</h3>
+<p>For this tutorial we require the Tensorflow models in a specific manner, needn&rsquo;t worry because they are quite easily available through the TF model zoo.</p>
+<p>The result of training a model using Tensorflow is a binary file with extension .pb which contains both topology and weights of trained network. You may download one of them from 
+<a href="https://github.com/tensorflow/models" target="_blank" rel="noopener">Model Zoo</a>,</p>
+<p>Once you have the <code>.pb</code> file you will also need a <code>.pbtxt</code> file which is an extra configuration file required which you can find 
+<a href="https://github.com/opencv/opencv_extra/tree/master/testdata/dnn" target="_blank" rel="noopener">here</a> for many pretrained models and below you can find a good list from the OpenCV wiki to help you get started faster.</p>
+<table>
+<thead>
+<tr>
+<th>Model Version</th>
+<th align="center">Version</th>
+<th align="right">Weights(.pb)</th>
+<th align="right">prototxt(.pbtxt)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MobileNet-SSD v1</td>
+<td align="center">2017_11_17</td>
+<td align="right">
+<a href="http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2017_11_17.tar.gz" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v1_coco_2017_11_17.pbtxt" target="_blank" rel="noopener">config</a></td>
+</tr>
+<tr>
+<td>MobileNet-SSD v1 PPN</td>
+<td align="center">2018_07_03</td>
+<td align="right">
+<a href="http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_ppn_shared_box_predictor_300x300_coco14_sync_2018_07_03.tar.gz" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v1_ppn_coco.pbtxt" target="_blank" rel="noopener">config</a></td>
+</tr>
+<tr>
+<td>MobileNet-SSD v2</td>
+<td align="center">2018_03_29</td>
+<td align="right">
+<a href="http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v2_coco_2018_03_29.pbtxt" target="_blank" rel="noopener">config</a></td>
+</tr>
+<tr>
+<td>Inception-SSD v2</td>
+<td align="center">2017_11_17</td>
+<td align="right">
+<a href="http://download.tensorflow.org/models/object_detection/ssd_inception_v2_coco_2017_11_17.tar.gz" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_inception_v2_coco_2017_11_17.pbtxt" target="_blank" rel="noopener">config</a></td>
+</tr>
+<tr>
+<td>MobileNet-SSD v3 (see 
+<a href="https://github.com/opencv/opencv/pull/16760" target="_blank" rel="noopener">#16760</a>)</td>
+<td align="center">2020_01_14</td>
+<td align="right">
+<a href="http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v3_large_coco_2020_01_14.tar.gz" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://gist.github.com/dkurt/54a8e8b51beb3bd3f770b79e56927bd7" target="_blank" rel="noopener">config</a></td>
+</tr>
+<tr>
+<td>Faster-RCNN Inception v2</td>
+<td align="center">2018_01_28</td>
+<td align="right">
+<a href="http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/faster_rcnn_inception_v2_coco_2018_01_28.pbtxt" target="_blank" rel="noopener">config</a></td>
+</tr>
+<tr>
+<td>Faster-RCNN ResNet-50</td>
+<td align="center">2018_01_28</td>
+<td align="right">
+<a href="http://download.tensorflow.org/models/object_detection/faster_rcnn_resnet50_coco_2018_01_28.tar.gz" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/faster_rcnn_resnet50_coco_2018_01_28.pbtxt" target="_blank" rel="noopener">config</a></td>
+</tr>
+<tr>
+<td>Mask-RCNN Inception v2</td>
+<td align="center">2018_01_28</td>
+<td align="right">
+<a href="http://download.tensorflow.org/models/object_detection/mask_rcnn_inception_v2_coco_2018_01_28.tar.gz" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/mask_rcnn_inception_v2_coco_2018_01_28.pbtxt" target="_blank" rel="noopener">config</a></td>
+</tr>
+<tr>
+<td>EfficientDet-D0</td>
+<td align="center">(see 
+<a href="https://github.com/opencv/opencv/pull/17384" target="_blank" rel="noopener">#17384</a>)</td>
+<td align="right">
+<a href="https://www.dropbox.com/s/9mqp99fd2tpuqn6/efficientdet-d0.pb?dl=1" target="_blank" rel="noopener">weights</a></td>
+<td align="right">
+<a href="https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/efficientdet-d0.pbtxt" target="_blank" rel="noopener">config</a></td>
+</tr>
+</tbody>
+</table>
+<p>Furthermore, if you would like to convert your own models you can refer the following scripts for a better context to how to get the required files.</p>
+<ul>
+<li>
+<a href="https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_ssd.py" target="_blank" rel="noopener">tf_text_graph_ssd.py</a></li>
+<li>
+<a href="https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_common.py" target="_blank" rel="noopener">tf_text_graph_common.py</a></li>
+<li>
+<a href="https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_faster_rcnn.py" target="_blank" rel="noopener">tf_text_graph_faster_rcnn.py</a></li>
+<li>
+<a href="https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_mask_rcnn.py" target="_blank" rel="noopener">tf_text_graph_mask_rcnn.py</a></li>
+</ul>
+<p>You can pass the configuration file which was used for training to get your pbtxt file to determine the hyperparameters.</p>
+<pre><code>python tf_text_graph_faster_rcnn.py --input /path/to/model.pb --config /path/to/example.config --output /path/to/graph.pbtxt
+</code></pre>
+<p>Now that we have the required files , let us dive right into the code.</p>
+<p>THe module we need is the <code>cv2</code>'s dnn module <code>readNetFromTensorflow</code> which accepts <code>.pb</code> and <code>.pbtxt</code> as arguments.
+According to opencv docs these arguments are defined as :</p>
+<pre><code>model - path to the .pb file with binary protobuf description of the network architecture
+config - path to the .pbtxt file that contains text graph definition in protobuf format. Resulting Net object is built by text graph using weights from a binary one that let us make it more flexible. 
+</code></pre>
+<p>To then load your model you can do</p>
+<pre><code>Net = cv2.dnn.readNetFromTensorflow(PATH_TO_CKPT, PATH_TO_PBTXT)
+</code></pre>
+<p>Once you have laoded your model with config you then need to pass your image/frame to the net to perform inference.</p>
+<pre><code>Net.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
+detections = Net.forward()
+</code></pre>
+<p>Here <code>blobFromImage</code> creates 4-dimensional blob from image. Optionally it also resizes and crops image from center, subtract mean values, scales values by scalefactor, swap Blue and Red channels.</p>
+<p>The parameters can be defined as as shown in the above example</p>
+<pre><code>image - input image (with 1-, 3- or 4-channels).
+size - spatial size for output image
+mean - scalar with mean values which are subtracted from channels. Values are intended to be in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
+scalefactor - multiplier for image values.
+swapRB - flag which indicates that swap first and last channels in 3-channel image is necessary.
+crop - flag which indicates whether image will be cropped after resize or not
+ddepth - Depth of output blob. Choose CV_32F or CV_8U.
+</code></pre>
+<p>Whereas the <code>Net.forward</code> runs forward pass to compute output of layer with name outputName.
+That&rsquo;s it those are the changes, now you just need to loop over the detections with a desired accuracy metric and get your final result as you would otherwise get by using Tensorflow directly( bounding boxes ).</p>
+<p>You now need to put all the pieces together to getting started on this:</p>
+<p>To run inference on an image you can use the following script :</p>
+<script type="application/javascript" src="https://gist.github.com/ashwin-phadke/22f76dfa33c2f13b67e28af559613c8e.js"></script>
+
+<pre><code class="language-python">
+import cv2
+
+# Load a model imported from Tensorflow
+tensorflowNet = cv2.dnn.readNetFromTensorflow('frozen_inference_graph.pb', 'graph.pbtxt')
+
+# Input image
+img = cv2.imread(PATH_TO_YOUR_IMAGE)
+rows, cols, channels = img.shape
+
+# Use the given image as input blob(s).
+tensorflowNet.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
+
+networkOutput = tensorflowNet.forward()
+
+# Loop on the outputs
+for detection in networkOutput[0,0]:
+    
+    score = float(detection[2])
+    if score &gt; 0.2:
+    	
+        left = detection[3] * cols
+        top = detection[4] * rows
+        right = detection[5] * cols
+        bottom = detection[6] * rows
+
+        #draw a red rectangle around detected objects
+        cv2.rectangle(img, (int(left), int(top)), (int(right), int(bottom)), (0, 0, 255), thickness=2)
+
+
+# Show the image with a rectagle surrounding the detected objects 
+cv2.imshow('Image', img)
+cv2.waitKey()
+cv2.destroyAllWindows()
+
+
+</code></pre>
+<p>Well you are now set.
+You can expect output similar to this :</p>
+<p><img src="https://raw.githubusercontent.com/ashwin-phadke/implementations-and-guides/master/wiki_contents/Screenshot.png" alt=""></p>
+<p>Let&rsquo;s just not stop right here, how about processing videos for a bit more addition to this along with the showing labels over those bounding boxes.
+This post has you covered, you can use the following code to achieve this:</p>
+<pre><code class="language-python">
+from imutils.video import VideoStream
+from imutils.video import FPS
+import numpy as np
+import argparse
+import imutils
+import time
+import cv2
+
+
+# construct the argument parse and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument(&quot;-c&quot;, &quot;--confidence&quot;, type=float, default=0.8,
+    help=&quot;minimum probability to filter weak detections&quot;)
+args = vars(ap.parse_args())
+
+
+classes_90 = [ &quot;person&quot;, &quot;bicycle&quot;, &quot;car&quot;, &quot;motorcycle&quot;,
+            &quot;airplane&quot;, &quot;bus&quot;, &quot;train&quot;, &quot;truck&quot;, &quot;boat&quot;, &quot;traffic light&quot;, &quot;fire hydrant&quot;,
+            &quot;unknown&quot;, &quot;stop sign&quot;, &quot;parking meter&quot;, &quot;bench&quot;, &quot;bird&quot;, &quot;cat&quot;, &quot;dog&quot;, &quot;horse&quot;,
+            &quot;sheep&quot;, &quot;cow&quot;, &quot;elephant&quot;, &quot;bear&quot;, &quot;zebra&quot;, &quot;giraffe&quot;, &quot;unknown&quot;, &quot;backpack&quot;,
+            &quot;umbrella&quot;, &quot;unknown&quot;, &quot;unknown&quot;, &quot;handbag&quot;, &quot;tie&quot;, &quot;suitcase&quot;, &quot;frisbee&quot;, &quot;skis&quot;,
+            &quot;snowboard&quot;, &quot;sports ball&quot;, &quot;kite&quot;, &quot;baseball bat&quot;, &quot;baseball glove&quot;, &quot;skateboard&quot;,
+            &quot;surfboard&quot;, &quot;tennis racket&quot;, &quot;bottle&quot;, &quot;unknown&quot;, &quot;wine glass&quot;, &quot;cup&quot;, &quot;fork&quot;, &quot;knife&quot;,
+            &quot;spoon&quot;, &quot;bowl&quot;, &quot;banana&quot;, &quot;apple&quot;, &quot;sandwich&quot;, &quot;orange&quot;, &quot;broccoli&quot;, &quot;carrot&quot;, &quot;hot dog&quot;,
+            &quot;pizza&quot;, &quot;donut&quot;, &quot;cake&quot;, &quot;chair&quot;, &quot;couch&quot;, &quot;potted plant&quot;, &quot;bed&quot;, &quot;unknown&quot;, &quot;dining table&quot;,
+            &quot;unknown&quot;, &quot;unknown&quot;, &quot;toilet&quot;, &quot;unknown&quot;, &quot;tv&quot;, &quot;laptop&quot;, &quot;mouse&quot;, &quot;remote&quot;, &quot;keyboard&quot;,
+            &quot;cell phone&quot;, &quot;microwave&quot;, &quot;oven&quot;, &quot;toaster&quot;, &quot;sink&quot;, &quot;refrigerator&quot;, &quot;unknown&quot;,
+            &quot;book&quot;, &quot;clock&quot;, &quot;vase&quot;, &quot;scissors&quot;, &quot;teddy bear&quot;, &quot;hair drier&quot;, &quot;toothbrush&quot; ] 
+
+CLASSES = classes_90  #New list of classess with 90 classess.
+print(CLASSES)
+
+
+COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3)) 
+
+cvNet = cv2.dnn.readNetFromTensorflow(PATH_TO_PB, PATH_TO_PBTXT)
+
+cap = cv2.VideoCapture(INPUT_VIDEO)  
+
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    h = frame.shape[0] 
+    w = frame.shape[1] 
+    img = np.array(frame)
+    cvNet.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
+    detections = cvNet.forward()
+
+
+    # loop over the detections
+    for i in np.arange(0, detections.shape[2]):
+        # extract the confidence (i.e., probability) associated with
+        # the prediction
+        confidence = detections[0, 0, i, 2]
+
+        # filter out weak detections by ensuring the `confidence` is
+        # greater than the minimum confidence
+        if confidence &gt; args[&quot;confidence&quot;]:
+            # extract the index of the class label from the
+            # `detections`, then compute the (x, y)-coordinates of
+            # the bounding box for the object
+            idx = int(detections[0, 0, i, 1])
+            print(idx   )
+            box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+            (startX, startY, endX, endY) = box.astype(&quot;int&quot;)
+
+            # draw the prediction on the frame
+            label = &quot;{}: {:.2f}%&quot;.format(CLASSES[idx],
+                confidence * 100)
+            cv2.rectangle(img, (startX, startY), (endX, endY),
+                COLORS[idx], 2)
+            y = startY - 15 if startY - 15 &gt; 15 else startY + 15
+            cv2.putText(img, label, (startX, y),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
+
+            #print(label)
+
+
+    out_img = cv2.resize(img, (640, 480))
+    cv2.imshow('img', out_img)
+    if cv2.waitKey(25) &amp; 0xFF == ord('q'):
+        cv2.destroyAllWindows()
+
+</code></pre>
+<p>You can also run your model using also the python script from the OpenCV documentation as given below:</p>
+<pre><code class="language-python">import numpy as np
+import tensorflow as tf
+import cv2 as cv
+
+# Read the graph.
+with tf.gfile.FastGFile('frozen_inference_graph.pb', 'rb') as f:
+    graph_def = tf.GraphDef()
+    graph_def.ParseFromString(f.read())
+
+with tf.Session() as sess:
+    # Restore session
+    sess.graph.as_default()
+    tf.import_graph_def(graph_def, name='')
+
+    # Read and preprocess an image.
+    img = cv.imread('example.jpg')
+    rows = img.shape[0]
+    cols = img.shape[1]
+    inp = cv.resize(img, (300, 300))
+    inp = inp[:, :, [2, 1, 0]]  # BGR2RGB
+
+    # Run the model
+    out = sess.run([sess.graph.get_tensor_by_name('num_detections:0'),
+                    sess.graph.get_tensor_by_name('detection_scores:0'),
+                    sess.graph.get_tensor_by_name('detection_boxes:0'),
+                    sess.graph.get_tensor_by_name('detection_classes:0')],
+                   feed_dict={'image_tensor:0': inp.reshape(1, inp.shape[0], inp.shape[1], 3)})
+
+    # Visualize detected bounding boxes.
+    num_detections = int(out[0][0])
+    for i in range(num_detections):
+        classId = int(out[3][0][i])
+        score = float(out[1][0][i])
+        bbox = [float(v) for v in out[2][0][i]]
+        if score &gt; 0.3:
+            x = bbox[1] * cols
+            y = bbox[0] * rows
+            right = bbox[3] * cols
+            bottom = bbox[2] * rows
+            cv.rectangle(img, (int(x), int(y)), (int(right), int(bottom)), (125, 255, 51), thickness=2)
+
+cv.imshow('TensorFlow MobileNet-SSD', img)
+cv.waitKey()
+</code></pre>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/load-tensorflow-models-using-opencv/&amp;text=Load%20Tensorflow%20Models%20Using%20Opencv" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/load-tensorflow-models-using-opencv/&amp;t=Load%20Tensorflow%20Models%20Using%20Opencv" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Load%20Tensorflow%20Models%20Using%20Opencv&amp;body=/post/load-tensorflow-models-using-opencv/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/load-tensorflow-models-using-opencv/&amp;title=Load%20Tensorflow%20Models%20Using%20Opencv" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Load%20Tensorflow%20Models%20Using%20Opencv%20/post/load-tensorflow-models-using-opencv/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/ashwin-phadke/avatar_hu2824a27c28b86285af6303ba3a88f5dd_13785_270x270_fill_q90_lanczos_center.JPG" alt="Ashwin Phadke">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Ashwin Phadke</a></h5>
+        <h6 class="card-subtitle">AI and Deep Learning Engineer</h6>
+        <p class="card-text">Ashwin is a AI and Deep learning engineer with more than 1.2 years of professional and mentoring experience in deep learning, computer vision and NLP.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:ashwinphadke12@rediffmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/ashwin-phadke1041995/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/ashwinphadke1" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/ashwin-phadke" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/build-layers-tf-python/" rel="prev">Build your own layers for deep learning models using TensorFlow 2.0 and Python</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.8/mermaid.min.js" integrity="sha256-lyWCDMnMeZiXRi7Zl54sZGKYmgQs4izcT7+tKc+KUBk=" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.37431be2d92d7fb0160054761ab79602.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © <code>2020</code> Ashwin Phadke for Hugo
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

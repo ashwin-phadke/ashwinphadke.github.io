@@ -5,12 +5,349 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>Ashwin Phadke</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Sat, 18 Jul 2020 11:00:00 +0530</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Thu, 20 Aug 2020 21:38:51 +0530</lastBuildDate>
     <image>
       <url>/img/avatar</url>
       <title>Ashwin Phadke</title>
       <link>/</link>
     </image>
+    
+    <item>
+      <title>Load Tensorflow Models Using Opencv</title>
+      <link>/post/load-tensorflow-models-using-opencv/</link>
+      <pubDate>Thu, 20 Aug 2020 21:38:51 +0530</pubDate>
+      <guid>/post/load-tensorflow-models-using-opencv/</guid>
+      <description>&lt;h3 id=&#34;background-&#34;&gt;Background :&lt;/h3&gt;
+&lt;p&gt;It is always a daunting task with &lt;code&gt;Tensorflow&lt;/code&gt; sessions and standard handling of a typical &lt;code&gt;Tensorflow&lt;/code&gt; model when you want to run inference. However, if you are an experienced developer you may also quickly go through these steps because you are already aware about how to use &lt;code&gt;Tensorflow&lt;/code&gt; to run inference on your model.
+Most of the times we use some image pre-processing over the input image before passing it to your model built using &lt;code&gt;Tensorflow&lt;/code&gt;. This pre-processing is mostly handled using OpenCV or such libraries or something like &lt;code&gt;imutils&lt;/code&gt; for basic handling of images or video frames.
+How about using OpenCV itself to load and run inference on your &lt;code&gt;Tensorflow&lt;/code&gt; models, this is what I encountered very recently when I was stuck with a problem while using &lt;code&gt;Tensorflow&lt;/code&gt; sessions, although being straightforward these &lt;code&gt;Tensorflow&lt;/code&gt; sessions can sometimes take some little extra time to manage while doing inference. OpenCV handles it quite well and we are going to discuss it here in this blog post.&lt;/p&gt;
+&lt;h3 id=&#34;pre-requisites-&#34;&gt;Pre-requisites :&lt;/h3&gt;
+&lt;p&gt;You have been from&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import cv2
+import tensorflow as tf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;results : person - 84%
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;loading-tf-models-using-opencv-&#34;&gt;Loading TF models using OpenCV :&lt;/h3&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://docs.opencv.org/master/d2/d58/tutorial_table_of_content_dnn.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Opencv&amp;rsquo;s DNN module&lt;/a&gt; hosts a variety of great features when it comes to utilizing the library for neural networks.
+One such important addition is 
+&lt;a href=&#34;https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tensorflow&amp;rsquo;s object detection API&lt;/a&gt; using OpenCV&amp;rsquo;s dnn module.
+If you have not installed OpenCV with it&amp;rsquo;s extra modules also called as 
+&lt;a href=&#34;https://github.com/opencv/opencv_contrib&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenCV Contrib&lt;/a&gt; modules you can read one of my previous post on how to do that 
+&lt;a href=&#34;https://ashwin-phadke.github.io/post/install-opencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;getting-started-&#34;&gt;Getting started :&lt;/h3&gt;
+&lt;p&gt;For this tutorial we require the Tensorflow models in a specific manner, needn&amp;rsquo;t worry because they are quite easily available through the TF model zoo.&lt;/p&gt;
+&lt;p&gt;The result of training a model using Tensorflow is a binary file with extension .pb which contains both topology and weights of trained network. You may download one of them from 
+&lt;a href=&#34;https://github.com/tensorflow/models&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Model Zoo&lt;/a&gt;,&lt;/p&gt;
+&lt;p&gt;Once you have the &lt;code&gt;.pb&lt;/code&gt; file you will also need a &lt;code&gt;.pbtxt&lt;/code&gt; file which is an extra configuration file required which you can find 
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; for many pretrained models and below you can find a good list from the OpenCV wiki to help you get started faster.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Model Version&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Version&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Weights(.pb)&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;prototxt(.pbtxt)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNet-SSD v1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2017_11_17&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2017_11_17.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v1_coco_2017_11_17.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNet-SSD v1 PPN&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_07_03&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_ppn_shared_box_predictor_300x300_coco14_sync_2018_07_03.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v1_ppn_coco.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNet-SSD v2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_03_29&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v2_coco_2018_03_29.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Inception-SSD v2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2017_11_17&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_inception_v2_coco_2017_11_17.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_inception_v2_coco_2017_11_17.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNet-SSD v3 (see 
+&lt;a href=&#34;https://github.com/opencv/opencv/pull/16760&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#16760&lt;/a&gt;)&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2020_01_14&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v3_large_coco_2020_01_14.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://gist.github.com/dkurt/54a8e8b51beb3bd3f770b79e56927bd7&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Faster-RCNN Inception v2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_01_28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/faster_rcnn_inception_v2_coco_2018_01_28.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Faster-RCNN ResNet-50&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_01_28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/faster_rcnn_resnet50_coco_2018_01_28.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/faster_rcnn_resnet50_coco_2018_01_28.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mask-RCNN Inception v2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_01_28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/mask_rcnn_inception_v2_coco_2018_01_28.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/mask_rcnn_inception_v2_coco_2018_01_28.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EfficientDet-D0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;(see 
+&lt;a href=&#34;https://github.com/opencv/opencv/pull/17384&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#17384&lt;/a&gt;)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://www.dropbox.com/s/9mqp99fd2tpuqn6/efficientdet-d0.pb?dl=1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/efficientdet-d0.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Furthermore, if you would like to convert your own models you can refer the following scripts for a better context to how to get the required files.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_ssd.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tf_text_graph_ssd.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_common.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tf_text_graph_common.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_faster_rcnn.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tf_text_graph_faster_rcnn.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_mask_rcnn.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tf_text_graph_mask_rcnn.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can pass the configuration file which was used for training to get your pbtxt file to determine the hyperparameters.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python tf_text_graph_faster_rcnn.py --input /path/to/model.pb --config /path/to/example.config --output /path/to/graph.pbtxt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we have the required files , let us dive right into the code.&lt;/p&gt;
+&lt;p&gt;THe module we need is the &lt;code&gt;cv2&lt;/code&gt;&#39;s dnn module &lt;code&gt;readNetFromTensorflow&lt;/code&gt; which accepts &lt;code&gt;.pb&lt;/code&gt; and &lt;code&gt;.pbtxt&lt;/code&gt; as arguments.
+According to opencv docs these arguments are defined as :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;model - path to the .pb file with binary protobuf description of the network architecture
+config - path to the .pbtxt file that contains text graph definition in protobuf format. Resulting Net object is built by text graph using weights from a binary one that let us make it more flexible. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To then load your model you can do&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Net = cv2.dnn.readNetFromTensorflow(PATH_TO_CKPT, PATH_TO_PBTXT)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once you have laoded your model with config you then need to pass your image/frame to the net to perform inference.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Net.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
+detections = Net.forward()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here &lt;code&gt;blobFromImage&lt;/code&gt; creates 4-dimensional blob from image. Optionally it also resizes and crops image from center, subtract mean values, scales values by scalefactor, swap Blue and Red channels.&lt;/p&gt;
+&lt;p&gt;The parameters can be defined as as shown in the above example&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;image - input image (with 1-, 3- or 4-channels).
+size - spatial size for output image
+mean - scalar with mean values which are subtracted from channels. Values are intended to be in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
+scalefactor - multiplier for image values.
+swapRB - flag which indicates that swap first and last channels in 3-channel image is necessary.
+crop - flag which indicates whether image will be cropped after resize or not
+ddepth - Depth of output blob. Choose CV_32F or CV_8U.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Whereas the &lt;code&gt;Net.forward&lt;/code&gt; runs forward pass to compute output of layer with name outputName.
+That&amp;rsquo;s it those are the changes, now you just need to loop over the detections with a desired accuracy metric and get your final result as you would otherwise get by using Tensorflow directly( bounding boxes ).&lt;/p&gt;
+&lt;p&gt;You now need to put all the pieces together to getting started on this:&lt;/p&gt;
+&lt;p&gt;To run inference on an image you can use the following script :&lt;/p&gt;
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/ashwin-phadke/22f76dfa33c2f13b67e28af559613c8e.js&#34;&gt;&lt;/script&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+import cv2
+
+# Load a model imported from Tensorflow
+tensorflowNet = cv2.dnn.readNetFromTensorflow(&#39;frozen_inference_graph.pb&#39;, &#39;graph.pbtxt&#39;)
+
+# Input image
+img = cv2.imread(PATH_TO_YOUR_IMAGE)
+rows, cols, channels = img.shape
+
+# Use the given image as input blob(s).
+tensorflowNet.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
+
+networkOutput = tensorflowNet.forward()
+
+# Loop on the outputs
+for detection in networkOutput[0,0]:
+    
+    score = float(detection[2])
+    if score &amp;gt; 0.2:
+    	
+        left = detection[3] * cols
+        top = detection[4] * rows
+        right = detection[5] * cols
+        bottom = detection[6] * rows
+
+        #draw a red rectangle around detected objects
+        cv2.rectangle(img, (int(left), int(top)), (int(right), int(bottom)), (0, 0, 255), thickness=2)
+
+
+# Show the image with a rectagle surrounding the detected objects 
+cv2.imshow(&#39;Image&#39;, img)
+cv2.waitKey()
+cv2.destroyAllWindows()
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Well you are now set.
+You can expect output similar to this :&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ashwin-phadke/implementations-and-guides/master/wiki_contents/Screenshot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s just not stop right here, how about processing videos for a bit more addition to this along with the showing labels over those bounding boxes.
+This post has you covered, you can use the following code to achieve this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+from imutils.video import VideoStream
+from imutils.video import FPS
+import numpy as np
+import argparse
+import imutils
+import time
+import cv2
+
+
+# construct the argument parse and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument(&amp;quot;-c&amp;quot;, &amp;quot;--confidence&amp;quot;, type=float, default=0.8,
+    help=&amp;quot;minimum probability to filter weak detections&amp;quot;)
+args = vars(ap.parse_args())
+
+
+classes_90 = [ &amp;quot;person&amp;quot;, &amp;quot;bicycle&amp;quot;, &amp;quot;car&amp;quot;, &amp;quot;motorcycle&amp;quot;,
+            &amp;quot;airplane&amp;quot;, &amp;quot;bus&amp;quot;, &amp;quot;train&amp;quot;, &amp;quot;truck&amp;quot;, &amp;quot;boat&amp;quot;, &amp;quot;traffic light&amp;quot;, &amp;quot;fire hydrant&amp;quot;,
+            &amp;quot;unknown&amp;quot;, &amp;quot;stop sign&amp;quot;, &amp;quot;parking meter&amp;quot;, &amp;quot;bench&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;dog&amp;quot;, &amp;quot;horse&amp;quot;,
+            &amp;quot;sheep&amp;quot;, &amp;quot;cow&amp;quot;, &amp;quot;elephant&amp;quot;, &amp;quot;bear&amp;quot;, &amp;quot;zebra&amp;quot;, &amp;quot;giraffe&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;backpack&amp;quot;,
+            &amp;quot;umbrella&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;handbag&amp;quot;, &amp;quot;tie&amp;quot;, &amp;quot;suitcase&amp;quot;, &amp;quot;frisbee&amp;quot;, &amp;quot;skis&amp;quot;,
+            &amp;quot;snowboard&amp;quot;, &amp;quot;sports ball&amp;quot;, &amp;quot;kite&amp;quot;, &amp;quot;baseball bat&amp;quot;, &amp;quot;baseball glove&amp;quot;, &amp;quot;skateboard&amp;quot;,
+            &amp;quot;surfboard&amp;quot;, &amp;quot;tennis racket&amp;quot;, &amp;quot;bottle&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;wine glass&amp;quot;, &amp;quot;cup&amp;quot;, &amp;quot;fork&amp;quot;, &amp;quot;knife&amp;quot;,
+            &amp;quot;spoon&amp;quot;, &amp;quot;bowl&amp;quot;, &amp;quot;banana&amp;quot;, &amp;quot;apple&amp;quot;, &amp;quot;sandwich&amp;quot;, &amp;quot;orange&amp;quot;, &amp;quot;broccoli&amp;quot;, &amp;quot;carrot&amp;quot;, &amp;quot;hot dog&amp;quot;,
+            &amp;quot;pizza&amp;quot;, &amp;quot;donut&amp;quot;, &amp;quot;cake&amp;quot;, &amp;quot;chair&amp;quot;, &amp;quot;couch&amp;quot;, &amp;quot;potted plant&amp;quot;, &amp;quot;bed&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;dining table&amp;quot;,
+            &amp;quot;unknown&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;toilet&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;tv&amp;quot;, &amp;quot;laptop&amp;quot;, &amp;quot;mouse&amp;quot;, &amp;quot;remote&amp;quot;, &amp;quot;keyboard&amp;quot;,
+            &amp;quot;cell phone&amp;quot;, &amp;quot;microwave&amp;quot;, &amp;quot;oven&amp;quot;, &amp;quot;toaster&amp;quot;, &amp;quot;sink&amp;quot;, &amp;quot;refrigerator&amp;quot;, &amp;quot;unknown&amp;quot;,
+            &amp;quot;book&amp;quot;, &amp;quot;clock&amp;quot;, &amp;quot;vase&amp;quot;, &amp;quot;scissors&amp;quot;, &amp;quot;teddy bear&amp;quot;, &amp;quot;hair drier&amp;quot;, &amp;quot;toothbrush&amp;quot; ] 
+
+CLASSES = classes_90  #New list of classess with 90 classess.
+print(CLASSES)
+
+
+COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3)) 
+
+cvNet = cv2.dnn.readNetFromTensorflow(PATH_TO_PB, PATH_TO_PBTXT)
+
+cap = cv2.VideoCapture(INPUT_VIDEO)  
+
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    h = frame.shape[0] 
+    w = frame.shape[1] 
+    img = np.array(frame)
+    cvNet.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
+    detections = cvNet.forward()
+
+
+    # loop over the detections
+    for i in np.arange(0, detections.shape[2]):
+        # extract the confidence (i.e., probability) associated with
+        # the prediction
+        confidence = detections[0, 0, i, 2]
+
+        # filter out weak detections by ensuring the `confidence` is
+        # greater than the minimum confidence
+        if confidence &amp;gt; args[&amp;quot;confidence&amp;quot;]:
+            # extract the index of the class label from the
+            # `detections`, then compute the (x, y)-coordinates of
+            # the bounding box for the object
+            idx = int(detections[0, 0, i, 1])
+            print(idx   )
+            box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+            (startX, startY, endX, endY) = box.astype(&amp;quot;int&amp;quot;)
+
+            # draw the prediction on the frame
+            label = &amp;quot;{}: {:.2f}%&amp;quot;.format(CLASSES[idx],
+                confidence * 100)
+            cv2.rectangle(img, (startX, startY), (endX, endY),
+                COLORS[idx], 2)
+            y = startY - 15 if startY - 15 &amp;gt; 15 else startY + 15
+            cv2.putText(img, label, (startX, y),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
+
+            #print(label)
+
+
+    out_img = cv2.resize(img, (640, 480))
+    cv2.imshow(&#39;img&#39;, out_img)
+    if cv2.waitKey(25) &amp;amp; 0xFF == ord(&#39;q&#39;):
+        cv2.destroyAllWindows()
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can also run your model using also the python script from the OpenCV documentation as given below:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+import tensorflow as tf
+import cv2 as cv
+
+# Read the graph.
+with tf.gfile.FastGFile(&#39;frozen_inference_graph.pb&#39;, &#39;rb&#39;) as f:
+    graph_def = tf.GraphDef()
+    graph_def.ParseFromString(f.read())
+
+with tf.Session() as sess:
+    # Restore session
+    sess.graph.as_default()
+    tf.import_graph_def(graph_def, name=&#39;&#39;)
+
+    # Read and preprocess an image.
+    img = cv.imread(&#39;example.jpg&#39;)
+    rows = img.shape[0]
+    cols = img.shape[1]
+    inp = cv.resize(img, (300, 300))
+    inp = inp[:, :, [2, 1, 0]]  # BGR2RGB
+
+    # Run the model
+    out = sess.run([sess.graph.get_tensor_by_name(&#39;num_detections:0&#39;),
+                    sess.graph.get_tensor_by_name(&#39;detection_scores:0&#39;),
+                    sess.graph.get_tensor_by_name(&#39;detection_boxes:0&#39;),
+                    sess.graph.get_tensor_by_name(&#39;detection_classes:0&#39;)],
+                   feed_dict={&#39;image_tensor:0&#39;: inp.reshape(1, inp.shape[0], inp.shape[1], 3)})
+
+    # Visualize detected bounding boxes.
+    num_detections = int(out[0][0])
+    for i in range(num_detections):
+        classId = int(out[3][0][i])
+        score = float(out[1][0][i])
+        bbox = [float(v) for v in out[2][0][i]]
+        if score &amp;gt; 0.3:
+            x = bbox[1] * cols
+            y = bbox[0] * rows
+            right = bbox[3] * cols
+            bottom = bbox[2] * rows
+            cv.rectangle(img, (int(x), int(y)), (int(right), int(bottom)), (125, 255, 51), thickness=2)
+
+cv.imshow(&#39;TensorFlow MobileNet-SSD&#39;, img)
+cv.waitKey()
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Keras Tuner With Tensorflow</title>
