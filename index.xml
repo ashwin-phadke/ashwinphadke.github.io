@@ -31,10 +31,10 @@ import tensorflow as tf
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;loading-tf-models-using-opencv-&#34;&gt;Loading TF models using OpenCV :&lt;/h3&gt;
 &lt;p&gt;The 
-&lt;a href=&#34;https://docs.opencv.org/master/d2/d58/tutorial_table_of_content_dnn.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Opencv&amp;rsquo;s DNN module&lt;/a&gt; hosts a variety of great features when it comes to utilizing the library for neural networks.
-One such important addition is 
-&lt;a href=&#34;https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tensorflow&amp;rsquo;s object detection API&lt;/a&gt; using OpenCV&amp;rsquo;s dnn module.
-If you have not installed OpenCV with it&amp;rsquo;s extra modules also called as 
+&lt;a href=&#34;https://docs.opencv.org/master/d2/d58/tutorial_table_of_content_dnn.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Opencv&amp;rsquo;s DNN module&lt;/a&gt; hosts a variety of great features when it comes to utilizing the library for neural networks.&lt;/p&gt;
+&lt;p&gt;One such important addition is 
+&lt;a href=&#34;https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tensorflow&amp;rsquo;s object detection API&lt;/a&gt; using OpenCV&amp;rsquo;s dnn module.&lt;/p&gt;
+&lt;p&gt;If you have not installed OpenCV with it&amp;rsquo;s extra modules also called as 
 &lt;a href=&#34;https://github.com/opencv/opencv_contrib&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenCV Contrib&lt;/a&gt; modules you can read one of my previous post on how to do that 
 &lt;a href=&#34;https://ashwin-phadke.github.io/post/install-opencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;getting-started-&#34;&gt;Getting started :&lt;/h3&gt;
