@@ -172,180 +172,26 @@ That&amp;rsquo;s it those are the changes, now you just need to loop over the de
 &lt;p&gt;To run inference on an image you can use the following script :&lt;/p&gt;
 &lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/ashwin-phadke/22f76dfa33c2f13b67e28af559613c8e.js&#34;&gt;&lt;/script&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-import cv2
-
-# Load a model imported from Tensorflow
-tensorflowNet = cv2.dnn.readNetFromTensorflow(&#39;frozen_inference_graph.pb&#39;, &#39;graph.pbtxt&#39;)
-
-# Input image
-img = cv2.imread(PATH_TO_YOUR_IMAGE)
-rows, cols, channels = img.shape
-
-# Use the given image as input blob(s).
-tensorflowNet.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
-
-networkOutput = tensorflowNet.forward()
-
-# Loop on the outputs
-for detection in networkOutput[0,0]:
-    
-    score = float(detection[2])
-    if score &amp;gt; 0.2:
-    	
-        left = detection[3] * cols
-        top = detection[4] * rows
-        right = detection[5] * cols
-        bottom = detection[6] * rows
-
-        #draw a red rectangle around detected objects
-        cv2.rectangle(img, (int(left), int(top)), (int(right), int(bottom)), (0, 0, 255), thickness=2)
-
-
-# Show the image with a rectagle surrounding the detected objects 
-cv2.imshow(&#39;Image&#39;, img)
-cv2.waitKey()
-cv2.destroyAllWindows()
-
-
-&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Well you are now set.
 You can expect output similar to this :&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ashwin-phadke/implementations-and-guides/master/wiki_contents/Screenshot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s just not stop right here, how about processing videos for a bit more addition to this along with the showing labels over those bounding boxes.
 This post has you covered, you can use the following code to achieve this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-from imutils.video import VideoStream
-from imutils.video import FPS
-import numpy as np
-import argparse
-import imutils
-import time
-import cv2
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/ashwin-phadke/ea2b8739a173b4b2908c0886db69d308.js&#34;&gt;&lt;/script&gt;
 
-
-# construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument(&amp;quot;-c&amp;quot;, &amp;quot;--confidence&amp;quot;, type=float, default=0.8,
-    help=&amp;quot;minimum probability to filter weak detections&amp;quot;)
-args = vars(ap.parse_args())
-
-
-classes_90 = [ &amp;quot;person&amp;quot;, &amp;quot;bicycle&amp;quot;, &amp;quot;car&amp;quot;, &amp;quot;motorcycle&amp;quot;,
-            &amp;quot;airplane&amp;quot;, &amp;quot;bus&amp;quot;, &amp;quot;train&amp;quot;, &amp;quot;truck&amp;quot;, &amp;quot;boat&amp;quot;, &amp;quot;traffic light&amp;quot;, &amp;quot;fire hydrant&amp;quot;,
-            &amp;quot;unknown&amp;quot;, &amp;quot;stop sign&amp;quot;, &amp;quot;parking meter&amp;quot;, &amp;quot;bench&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;dog&amp;quot;, &amp;quot;horse&amp;quot;,
-            &amp;quot;sheep&amp;quot;, &amp;quot;cow&amp;quot;, &amp;quot;elephant&amp;quot;, &amp;quot;bear&amp;quot;, &amp;quot;zebra&amp;quot;, &amp;quot;giraffe&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;backpack&amp;quot;,
-            &amp;quot;umbrella&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;handbag&amp;quot;, &amp;quot;tie&amp;quot;, &amp;quot;suitcase&amp;quot;, &amp;quot;frisbee&amp;quot;, &amp;quot;skis&amp;quot;,
-            &amp;quot;snowboard&amp;quot;, &amp;quot;sports ball&amp;quot;, &amp;quot;kite&amp;quot;, &amp;quot;baseball bat&amp;quot;, &amp;quot;baseball glove&amp;quot;, &amp;quot;skateboard&amp;quot;,
-            &amp;quot;surfboard&amp;quot;, &amp;quot;tennis racket&amp;quot;, &amp;quot;bottle&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;wine glass&amp;quot;, &amp;quot;cup&amp;quot;, &amp;quot;fork&amp;quot;, &amp;quot;knife&amp;quot;,
-            &amp;quot;spoon&amp;quot;, &amp;quot;bowl&amp;quot;, &amp;quot;banana&amp;quot;, &amp;quot;apple&amp;quot;, &amp;quot;sandwich&amp;quot;, &amp;quot;orange&amp;quot;, &amp;quot;broccoli&amp;quot;, &amp;quot;carrot&amp;quot;, &amp;quot;hot dog&amp;quot;,
-            &amp;quot;pizza&amp;quot;, &amp;quot;donut&amp;quot;, &amp;quot;cake&amp;quot;, &amp;quot;chair&amp;quot;, &amp;quot;couch&amp;quot;, &amp;quot;potted plant&amp;quot;, &amp;quot;bed&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;dining table&amp;quot;,
-            &amp;quot;unknown&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;toilet&amp;quot;, &amp;quot;unknown&amp;quot;, &amp;quot;tv&amp;quot;, &amp;quot;laptop&amp;quot;, &amp;quot;mouse&amp;quot;, &amp;quot;remote&amp;quot;, &amp;quot;keyboard&amp;quot;,
-            &amp;quot;cell phone&amp;quot;, &amp;quot;microwave&amp;quot;, &amp;quot;oven&amp;quot;, &amp;quot;toaster&amp;quot;, &amp;quot;sink&amp;quot;, &amp;quot;refrigerator&amp;quot;, &amp;quot;unknown&amp;quot;,
-            &amp;quot;book&amp;quot;, &amp;quot;clock&amp;quot;, &amp;quot;vase&amp;quot;, &amp;quot;scissors&amp;quot;, &amp;quot;teddy bear&amp;quot;, &amp;quot;hair drier&amp;quot;, &amp;quot;toothbrush&amp;quot; ] 
-
-CLASSES = classes_90  #New list of classess with 90 classess.
-print(CLASSES)
-
-
-COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3)) 
-
-cvNet = cv2.dnn.readNetFromTensorflow(PATH_TO_PB, PATH_TO_PBTXT)
-
-cap = cv2.VideoCapture(INPUT_VIDEO)  
-
-while cap.isOpened():
-    ret, frame = cap.read()
-    if not ret:
-        break
-
-    h = frame.shape[0] 
-    w = frame.shape[1] 
-    img = np.array(frame)
-    cvNet.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
-    detections = cvNet.forward()
-
-
-    # loop over the detections
-    for i in np.arange(0, detections.shape[2]):
-        # extract the confidence (i.e., probability) associated with
-        # the prediction
-        confidence = detections[0, 0, i, 2]
-
-        # filter out weak detections by ensuring the `confidence` is
-        # greater than the minimum confidence
-        if confidence &amp;gt; args[&amp;quot;confidence&amp;quot;]:
-            # extract the index of the class label from the
-            # `detections`, then compute the (x, y)-coordinates of
-            # the bounding box for the object
-            idx = int(detections[0, 0, i, 1])
-            print(idx   )
-            box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
-            (startX, startY, endX, endY) = box.astype(&amp;quot;int&amp;quot;)
-
-            # draw the prediction on the frame
-            label = &amp;quot;{}: {:.2f}%&amp;quot;.format(CLASSES[idx],
-                confidence * 100)
-            cv2.rectangle(img, (startX, startY), (endX, endY),
-                COLORS[idx], 2)
-            y = startY - 15 if startY - 15 &amp;gt; 15 else startY + 15
-            cv2.putText(img, label, (startX, y),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
-
-            #print(label)
-
-
-    out_img = cv2.resize(img, (640, 480))
-    cv2.imshow(&#39;img&#39;, out_img)
-    if cv2.waitKey(25) &amp;amp; 0xFF == ord(&#39;q&#39;):
-        cv2.destroyAllWindows()
-
-&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can also run your model using also the python script from the OpenCV documentation as given below:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
-import tensorflow as tf
-import cv2 as cv
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/ashwin-phadke/e0fe135edf2bcf62fb4e2f4c8905482b.js&#34;&gt;&lt;/script&gt;
 
-# Read the graph.
-with tf.gfile.FastGFile(&#39;frozen_inference_graph.pb&#39;, &#39;rb&#39;) as f:
-    graph_def = tf.GraphDef()
-    graph_def.ParseFromString(f.read())
-
-with tf.Session() as sess:
-    # Restore session
-    sess.graph.as_default()
-    tf.import_graph_def(graph_def, name=&#39;&#39;)
-
-    # Read and preprocess an image.
-    img = cv.imread(&#39;example.jpg&#39;)
-    rows = img.shape[0]
-    cols = img.shape[1]
-    inp = cv.resize(img, (300, 300))
-    inp = inp[:, :, [2, 1, 0]]  # BGR2RGB
-
-    # Run the model
-    out = sess.run([sess.graph.get_tensor_by_name(&#39;num_detections:0&#39;),
-                    sess.graph.get_tensor_by_name(&#39;detection_scores:0&#39;),
-                    sess.graph.get_tensor_by_name(&#39;detection_boxes:0&#39;),
-                    sess.graph.get_tensor_by_name(&#39;detection_classes:0&#39;)],
-                   feed_dict={&#39;image_tensor:0&#39;: inp.reshape(1, inp.shape[0], inp.shape[1], 3)})
-
-    # Visualize detected bounding boxes.
-    num_detections = int(out[0][0])
-    for i in range(num_detections):
-        classId = int(out[3][0][i])
-        score = float(out[1][0][i])
-        bbox = [float(v) for v in out[2][0][i]]
-        if score &amp;gt; 0.3:
-            x = bbox[1] * cols
-            y = bbox[0] * rows
-            right = bbox[3] * cols
-            bottom = bbox[2] * rows
-            cv.rectangle(img, (int(x), int(y)), (int(right), int(bottom)), (125, 255, 51), thickness=2)
-
-cv.imshow(&#39;TensorFlow MobileNet-SSD&#39;, img)
-cv.waitKey()
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;in-a-jiffy-&#34;&gt;In a jiffy :&lt;/h3&gt;
+&lt;p&gt;We dived into loading tensorflow models using OpenCV, various definitions of the functions used for doing the &lt;code&gt;Tensorflow&lt;/code&gt; operations in OpenCV itself and some examples related to it.
+I believe using &lt;code&gt;Tensorflow&lt;/code&gt; directly is still also the most effective way you can use the trained or pre-trained models to run inference on , however for ease, simplicity you can also try this method as it also leverages the same &lt;code&gt;Tensorflow Object Detection&lt;/code&gt; API.
+Hoping this was a great learning curve as it was for me.&lt;/p&gt;
+&lt;h3 id=&#34;references-&#34;&gt;References :&lt;/h3&gt;
+&lt;p&gt;[1] OpenCV extra modules contrib - &lt;a href=&#34;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&#34;&gt;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2] Tensorflow : &lt;a href=&#34;https://tensorflow.org&#34;&gt;https://tensorflow.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[3] Stack overflow : &lt;a href=&#34;https://stackoverflow.com&#34;&gt;https://stackoverflow.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[4] Tensorflow object detection API using OpenCV : &lt;a href=&#34;https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API&#34;&gt;https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[5] Jean&amp;rsquo;s blog - &lt;a href=&#34;https://jeanvitor.com/tensorflow-object-detecion-opencv/&#34;&gt;https://jeanvitor.com/tensorflow-object-detecion-opencv/&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
