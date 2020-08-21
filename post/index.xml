@@ -38,7 +38,8 @@ import tensorflow as tf
 &lt;a href=&#34;https://github.com/opencv/opencv_contrib&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenCV Contrib&lt;/a&gt; modules you can read one of my previous post on how to do that 
 &lt;a href=&#34;https://ashwin-phadke.github.io/post/install-opencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;getting-started-&#34;&gt;Getting started :&lt;/h3&gt;
-&lt;p&gt;For this tutorial we require the Tensorflow models in a specific manner, needn&amp;rsquo;t worry because they are quite easily available through the TF model zoo.&lt;/p&gt;
+&lt;p&gt;Jump right to the end if you are looking to download the codes.
+For this tutorial we require the Tensorflow models in a specific manner, needn&amp;rsquo;t worry because they are quite easily available through the TF model zoo.&lt;/p&gt;
 &lt;p&gt;The result of training a model using Tensorflow is a binary file with extension .pb which contains both topology and weights of trained network. You may download one of them from 
 &lt;a href=&#34;https://github.com/tensorflow/models&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Model Zoo&lt;/a&gt;,&lt;/p&gt;
 &lt;p&gt;Once you have the &lt;code&gt;.pb&lt;/code&gt; file you will also need a &lt;code&gt;.pbtxt&lt;/code&gt; file which is an extra configuration file required which you can find 
@@ -188,6 +189,74 @@ This post has you covered, you can use the following code to achieve this:&lt;/p
 Hoping this was a great learning curve as it was for me.&lt;/p&gt;
 &lt;p&gt;This can also be used to create API&amp;rsquo;s to your Opencv and Tensorflow based application.&lt;/p&gt;
 &lt;p&gt;OpenCV can also be used with other popular deep learning frameworks and libraries like Torch, Caffe, ONNX and also supports many deep learning layers used for training your own neural networks alongwith also seamlessely integrating them.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;/opencvtftutorial.zip&#34; class=&#34;buttonDownload&#34;&gt;Download codes for this tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;style&gt;
+body {
+	background-color: #1a1a1a;
+}
+.buttonDownload{
+	display: inline-block;
+	position: relative;
+	padding: 10px 25px;
+  	background-color: #4CC713;
+	color: white;
+  	font-family: sans-serif;
+	text-decoration: none;
+	font-size: 0.9em;
+	text-align: center;
+	text-indent: 15px;
+}
+.buttonDownload:hover {
+	background-color: #333;
+	color: white;
+}
+.buttonDownload:before, .buttonDownload:after {
+	content: &#39; &#39;;
+	display: block;
+	position: absolute;
+	left: 15px;
+	top: 52%;
+}
+/* Download box shape  */
+.buttonDownload:before {
+	width: 10px;
+	height: 2px;
+	border-style: solid;
+	border-width: 0 2px 2px;
+}
+/* Download arrow shape */
+.buttonDownload:after {
+	width: 0;
+	height: 0;
+	margin-left: 3px;
+	margin-top: -7px;
+	border-style: solid;
+	border-width: auto;
+	border-color: transparent;
+	border-top-color: inherit;
+	animation: downloadArrow 2s linear infinite;
+	animation-play-state: paused;
+}
+/* keyframes for the download icon anim */
+@keyframes downloadArrow {
+	/* 0% and 0.001% keyframes used as a hackish way of having the button frozen on a nice looking frame by default */
+	0% {
+		margin-top: -7px;
+		opacity: 1;
+	}
+	0.001% {
+		margin-top: -15px;
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		margin-top: 0;
+		opacity: 0;
+	}
+}
+&lt;/style&gt;
 &lt;h3 id=&#34;references-&#34;&gt;References :&lt;/h3&gt;
 &lt;p&gt;[1] OpenCV extra modules contrib - &lt;a href=&#34;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&#34;&gt;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[2] Tensorflow : &lt;a href=&#34;https://tensorflow.org&#34;&gt;https://tensorflow.org&lt;/a&gt;&lt;/p&gt;
