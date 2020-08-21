@@ -237,6 +237,13 @@ body {
 	animation: downloadArrow 2s linear infinite;
 	animation-play-state: paused;
 }
+.buttonDownload:hover:before {
+	border-color: #4CC713;
+}
+.buttonDownload:hover:after {
+	border-top-color: #4CC713;
+	animation-play-state: running;
+}
 /* keyframes for the download icon anim */
 @keyframes downloadArrow {
 	/* 0% and 0.001% keyframes used as a hackish way of having the button frozen on a nice looking frame by default */
