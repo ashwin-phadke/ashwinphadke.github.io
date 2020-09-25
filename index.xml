@@ -468,7 +468,8 @@ We are looking for open source enthusiasts to help advance the project, to know 
       <link>/project/object-detection/</link>
       <pubDate>Wed, 10 Jun 2020 21:43:12 +0530</pubDate>
       <guid>/project/object-detection/</guid>
-      <description></description>
+      <description>&lt;p&gt;Object detection usin OPenCV&amp;rsquo;s dnn module a mobilenet model trianed on caffe.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -476,7 +477,8 @@ We are looking for open source enthusiasts to help advance the project, to know 
       <link>/project/smart-anti-breach/</link>
       <pubDate>Wed, 10 Jun 2020 21:38:15 +0530</pubDate>
       <guid>/project/smart-anti-breach/</guid>
-      <description></description>
+      <description>&lt;p&gt;An app to secure your lockers, with fencing location and multi role access web.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -484,7 +486,8 @@ We are looking for open source enthusiasts to help advance the project, to know 
       <link>/project/zappchat/</link>
       <pubDate>Wed, 10 Jun 2020 21:36:51 +0530</pubDate>
       <guid>/project/zappchat/</guid>
-      <description></description>
+      <description>&lt;p&gt;Simple chat application.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -492,7 +495,8 @@ We are looking for open source enthusiasts to help advance the project, to know 
       <link>/project/face-recognition/</link>
       <pubDate>Wed, 10 Jun 2020 20:45:03 +0530</pubDate>
       <guid>/project/face-recognition/</guid>
-      <description></description>
+      <description>&lt;p&gt;Implementing simple facial recognition using Haarcascades and OpenCV&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -500,7 +504,8 @@ We are looking for open source enthusiasts to help advance the project, to know 
       <link>/project/optical-flow/</link>
       <pubDate>Tue, 09 Jun 2020 22:26:21 +0530</pubDate>
       <guid>/project/optical-flow/</guid>
-      <description></description>
+      <description>&lt;p&gt;An implementation of optical flow tracker using lucas-k : calcOpticalFlowPyrLK() method in OpenCV.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -508,7 +513,8 @@ We are looking for open source enthusiasts to help advance the project, to know 
       <link>/project/canny-edge-detection/</link>
       <pubDate>Tue, 09 Jun 2020 22:21:49 +0530</pubDate>
       <guid>/project/canny-edge-detection/</guid>
-      <description></description>
+      <description>&lt;p&gt;implementing canny edge detection from OpenCV with noise reduction, intensity gradient of image, non-maxima suppression and hysterisis thresholding&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -516,7 +522,8 @@ We are looking for open source enthusiasts to help advance the project, to know 
       <link>/project/find-dominant-color/</link>
       <pubDate>Tue, 09 Jun 2020 22:17:31 +0530</pubDate>
       <guid>/project/find-dominant-color/</guid>
-      <description></description>
+      <description>&lt;p&gt;Finding dominant color in an image with the help of quantization and eigne value.&lt;/p&gt;
+</description>
     </item>
     
     <item>
