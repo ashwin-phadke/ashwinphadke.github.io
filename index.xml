@@ -5,12 +5,39 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>Ashwin Phadke</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Thu, 20 Aug 2020 21:38:51 +0530</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Sun, 27 Sep 2020 21:42:44 +0530</lastBuildDate>
     <image>
       <url>/img/avatar</url>
       <title>Ashwin Phadke</title>
       <link>/</link>
     </image>
+    
+    <item>
+      <title>Analyzing Model Performance Tf Profiler</title>
+      <link>/talk/analyzing-model-performance-tf-profiler/</link>
+      <pubDate>Sun, 27 Sep 2020 21:42:44 +0530</pubDate>
+      <guid>/talk/analyzing-model-performance-tf-profiler/</guid>
+      <description>&lt;p&gt;Model performance is always a important aspect while training or tuning deep learning models. It is often left to experience or referred to certain previous benchmarks on different data and made analysis upon.&lt;/p&gt;
+&lt;p&gt;[TF Blog] Performance is a key consideration of successful ML research and production solutions. Faster model training leads to faster iterations and reduced overhead. It is sometimes an essential requirement to make a particular ML solution feasible.
+However it is not clear what needs to be optimized, whether the model or the input pipeline needs tweaking or a call to some operation.&lt;/p&gt;
+&lt;p&gt;This talk will focus on identifying the areas that are maybe slowing down model performance using a tool from tensorflow called Tensorflow profiler.&lt;/p&gt;
+&lt;p&gt;Learn more about 
+&lt;a href=&#34;https://github.com/tensorflow/profiler&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tensorflow profiler&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This talk will focus on :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;General ML model performance roadblocks faced.&lt;/li&gt;
+&lt;li&gt;Understanding efficient ways to analyze model performance.
+&lt;ul&gt;
+&lt;li&gt;Introduction to TF Profiler&lt;/li&gt;
+&lt;li&gt;Brief on how&amp;rsquo;s and what&amp;rsquo;s of profiler.&lt;/li&gt;
+&lt;li&gt;TF profiler as a tool.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Do keras calls to profiler itself affect performance?&lt;/li&gt;
+&lt;li&gt;TF Profiler demo using Google colab and tensorboard.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Load Tensorflow Models Using OpenCV</title>
