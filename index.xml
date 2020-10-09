@@ -5,7 +5,7 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>Ashwin Phadke</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Sat, 10 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Sat, 10 Oct 2020 10:00:00 +0530</lastBuildDate>
     <image>
       <url>/img/avatar</url>
       <title>Ashwin Phadke</title>
@@ -13,9 +13,9 @@
     </image>
     
     <item>
-      <title>Analyzing Model Performance Tf Profiler</title>
+      <title>Analyzing Model Performance using Tensorflow Profiler</title>
       <link>/talk/analyzing-model-performance-tf-profiler/</link>
-      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Oct 2020 10:00:00 +0530</pubDate>
       <guid>/talk/analyzing-model-performance-tf-profiler/</guid>
       <description>&lt;p&gt;Model performance is always a important aspect while training or tuning deep learning models. It is often left to experience or referred to certain previous benchmarks on different data and made analysis upon.&lt;/p&gt;
 &lt;p&gt;[TF Blog] Performance is a key consideration of successful ML research and production solutions. Faster model training leads to faster iterations and reduced overhead. It is sometimes an essential requirement to make a particular ML solution feasible.
