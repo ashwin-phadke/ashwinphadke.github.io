@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>neural networks | Ashwin Phadke</title>
+    <link>/tag/neural-networks/</link>
+      <atom:link href="/tag/neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <description>neural networks</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Thu, 20 Aug 2020 21:38:51 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>neural networks</title>
+      <link>/tag/neural-networks/</link>
+    </image>
+    
+    <item>
+      <title>Load Tensorflow Models Using OpenCV</title>
+      <link>/post/load-tensorflow-models-using-opencv/</link>
+      <pubDate>Thu, 20 Aug 2020 21:38:51 +0530</pubDate>
+      <guid>/post/load-tensorflow-models-using-opencv/</guid>
+      <description>&lt;h3 id=&#34;background-&#34;&gt;Background :&lt;/h3&gt;
+&lt;p&gt;It is always a daunting task with &lt;code&gt;Tensorflow&lt;/code&gt; sessions and standard handling of a typical &lt;code&gt;Tensorflow&lt;/code&gt; model when you want to run inference. However, if you are an experienced developer you may also quickly go through these steps because you are already aware about how to use &lt;code&gt;Tensorflow&lt;/code&gt; to run inference on your model.
+Most of the times we use some image pre-processing over the input image before passing it to your model built using &lt;code&gt;Tensorflow&lt;/code&gt;. This pre-processing is mostly handled using OpenCV or such libraries or something like &lt;code&gt;imutils&lt;/code&gt; for basic handling of images or video frames.
+How about using OpenCV itself to load and run inference on your &lt;code&gt;Tensorflow&lt;/code&gt; models, this is what I encountered very recently when I was stuck with a problem while using &lt;code&gt;Tensorflow&lt;/code&gt; sessions, although being straightforward these &lt;code&gt;Tensorflow&lt;/code&gt; sessions can sometimes take some little extra time to manage while doing inference. OpenCV handles it quite well and we are going to discuss it here in this blog post.&lt;/p&gt;
+&lt;h3 id=&#34;pre-requisites-&#34;&gt;Pre-requisites :&lt;/h3&gt;
+&lt;p&gt;You have been from&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import cv2
+import tensorflow as tf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;results : person - 84%
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;loading-tf-models-using-opencv-&#34;&gt;Loading TF models using OpenCV :&lt;/h3&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://docs.opencv.org/master/d2/d58/tutorial_table_of_content_dnn.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Opencv&amp;rsquo;s DNN module&lt;/a&gt; hosts a variety of great features when it comes to utilizing the library for neural networks.&lt;/p&gt;
+&lt;p&gt;One such important addition is 
+&lt;a href=&#34;https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tensorflow&amp;rsquo;s object detection API&lt;/a&gt; using OpenCV&amp;rsquo;s dnn module.&lt;/p&gt;
+&lt;p&gt;If you have not installed OpenCV with it&amp;rsquo;s extra modules also called as 
+&lt;a href=&#34;https://github.com/opencv/opencv_contrib&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenCV Contrib&lt;/a&gt; modules you can read one of my previous post on how to do that 
+&lt;a href=&#34;https://ashwin-phadke.github.io/post/install-opencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;getting-started-&#34;&gt;Getting started :&lt;/h3&gt;
+&lt;p&gt;Jump right to the end if you are looking to download the codes.
+For this tutorial we require the Tensorflow models in a specific manner, needn&amp;rsquo;t worry because they are quite easily available through the TF model zoo.&lt;/p&gt;
+&lt;p&gt;The result of training a model using Tensorflow is a binary file with extension .pb which contains both topology and weights of trained network. You may download one of them from 
+&lt;a href=&#34;https://github.com/tensorflow/models&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Model Zoo&lt;/a&gt;,&lt;/p&gt;
+&lt;p&gt;Once you have the &lt;code&gt;.pb&lt;/code&gt; file you will also need a &lt;code&gt;.pbtxt&lt;/code&gt; file which is an extra configuration file required which you can find 
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; for many pretrained models and below you can find a good list from the OpenCV wiki to help you get started faster.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Model Version&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Version&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Weights(.pb)&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;prototxt(.pbtxt)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNet-SSD v1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2017_11_17&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2017_11_17.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v1_coco_2017_11_17.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNet-SSD v1 PPN&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_07_03&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_ppn_shared_box_predictor_300x300_coco14_sync_2018_07_03.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v1_ppn_coco.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNet-SSD v2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_03_29&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_mobilenet_v2_coco_2018_03_29.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Inception-SSD v2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2017_11_17&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_inception_v2_coco_2017_11_17.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/ssd_inception_v2_coco_2017_11_17.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNet-SSD v3 (see 
+&lt;a href=&#34;https://github.com/opencv/opencv/pull/16760&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#16760&lt;/a&gt;)&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2020_01_14&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v3_large_coco_2020_01_14.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://gist.github.com/dkurt/54a8e8b51beb3bd3f770b79e56927bd7&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Faster-RCNN Inception v2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_01_28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/faster_rcnn_inception_v2_coco_2018_01_28.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Faster-RCNN ResNet-50&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_01_28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/faster_rcnn_resnet50_coco_2018_01_28.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/faster_rcnn_resnet50_coco_2018_01_28.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mask-RCNN Inception v2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2018_01_28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;http://download.tensorflow.org/models/object_detection/mask_rcnn_inception_v2_coco_2018_01_28.tar.gz&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/mask_rcnn_inception_v2_coco_2018_01_28.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EfficientDet-D0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;(see 
+&lt;a href=&#34;https://github.com/opencv/opencv/pull/17384&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#17384&lt;/a&gt;)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://www.dropbox.com/s/9mqp99fd2tpuqn6/efficientdet-d0.pb?dl=1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;weights&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/efficientdet-d0.pbtxt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;config&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Furthermore, if you would like to convert your own models you can refer the following scripts for a better context to how to get the required files.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_ssd.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tf_text_graph_ssd.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_common.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tf_text_graph_common.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_faster_rcnn.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tf_text_graph_faster_rcnn.py&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/tf_text_graph_mask_rcnn.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tf_text_graph_mask_rcnn.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can pass the configuration file which was used for training to get your pbtxt file to determine the hyperparameters.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python tf_text_graph_faster_rcnn.py --input /path/to/model.pb --config /path/to/example.config --output /path/to/graph.pbtxt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we have the required files , let us dive right into the code.&lt;/p&gt;
+&lt;p&gt;THe module we need is the &lt;code&gt;cv2&lt;/code&gt;&#39;s dnn module &lt;code&gt;readNetFromTensorflow&lt;/code&gt; which accepts &lt;code&gt;.pb&lt;/code&gt; and &lt;code&gt;.pbtxt&lt;/code&gt; as arguments.
+According to opencv docs these arguments are defined as :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;model - path to the .pb file with binary protobuf description of the network architecture
+config - path to the .pbtxt file that contains text graph definition in protobuf format. Resulting Net object is built by text graph using weights from a binary one that let us make it more flexible. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To then load your model you can do&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Net = cv2.dnn.readNetFromTensorflow(PATH_TO_CKPT, PATH_TO_PBTXT)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once you have laoded your model with config you then need to pass your image/frame to the net to perform inference.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Net.setInput(cv2.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=False))
+detections = Net.forward()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here &lt;code&gt;blobFromImage&lt;/code&gt; creates 4-dimensional blob from image. Optionally it also resizes and crops image from center, subtract mean values, scales values by scalefactor, swap Blue and Red channels.&lt;/p&gt;
+&lt;p&gt;The parameters can be defined as shown in the above example&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;image - input image (with 1-, 3- or 4-channels).
+size - spatial size for output image
+mean - scalar with mean values which are subtracted from channels. Values are intended to be in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
+scalefactor - multiplier for image values.
+swapRB - flag which indicates that swap first and last channels in 3-channel image is necessary.
+crop - flag which indicates whether image will be cropped after resize or not
+ddepth - Depth of output blob. Choose CV_32F or CV_8U.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Whereas the &lt;code&gt;Net.forward&lt;/code&gt; runs forward pass to compute output of layer with name outputName.
+That&amp;rsquo;s it those are the changes, now you just need to loop over the detections with a desired accuracy metric and get your final result as you would otherwise get by using Tensorflow directly( bounding boxes ).&lt;/p&gt;
+&lt;p&gt;You now need to put all the pieces together to getting started on this:&lt;/p&gt;
+&lt;p&gt;To run inference on an image you can use the following script :&lt;/p&gt;
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/ashwin-phadke/22f76dfa33c2f13b67e28af559613c8e.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Well you are now set.&lt;/p&gt;
+&lt;p&gt;You can expect output similar to this :&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ashwin-phadke/implementations-and-guides/master/wiki_contents/Screenshot.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s just not stop right here, how about processing videos for a bit more addition to this along with the showing labels over those bounding boxes.
+This post has you covered, you can use the following code to achieve this:&lt;/p&gt;
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/ashwin-phadke/ea2b8739a173b4b2908c0886db69d308.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;You can also run your model using also the python script from the OpenCV documentation as given below:&lt;/p&gt;
+&lt;script type=&#34;application/javascript&#34; src=&#34;https://gist.github.com/ashwin-phadke/e0fe135edf2bcf62fb4e2f4c8905482b.js&#34;&gt;&lt;/script&gt;
+
+&lt;h3 id=&#34;in-a-jiffy-&#34;&gt;In a jiffy :&lt;/h3&gt;
+&lt;p&gt;We dived into loading tensorflow models using OpenCV, various definitions of the functions used for doing the &lt;code&gt;Tensorflow&lt;/code&gt; operations in OpenCV itself and some examples related to it.&lt;/p&gt;
+&lt;p&gt;I believe using &lt;code&gt;Tensorflow&lt;/code&gt; directly is still also the most effective way you can use the trained or pre-trained models to run inference on , however for ease, simplicity you can also try this method as it also leverages the same &lt;code&gt;Tensorflow Object Detection&lt;/code&gt; API.
+Hoping this was a great learning curve as it was for me.&lt;/p&gt;
+&lt;p&gt;This can also be used to create API&amp;rsquo;s to your Opencv and Tensorflow based application.&lt;/p&gt;
+&lt;p&gt;OpenCV can also be used with other popular deep learning frameworks and libraries like Torch, Caffe, ONNX and also supports many deep learning layers used for training your own neural networks alongwith also seamlessely integrating them.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;/opencvtftutorial.zip&#34; class=&#34;buttonDownload&#34;&gt;Download codes for this tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;style&gt;
+body {
+	background-color: #1a1a1a;
+}
+.buttonDownload{
+	display: inline-block;
+	position: relative;
+	padding: 10px 25px;
+  	background-color: #4CC713;
+	color: white;
+  	font-family: sans-serif;
+	text-decoration: none;
+	font-size: 0.9em;
+	text-align: center;
+	text-indent: 15px;
+}
+.buttonDownload:hover {
+	background-color: #333;
+	color: white;
+}
+.buttonDownload:before, .buttonDownload:after {
+	content: &#39; &#39;;
+	display: block;
+	position: absolute;
+	left: 15px;
+	top: 52%;
+}
+/* Download box shape  */
+.buttonDownload:before {
+	width: 10px;
+	height: 2px;
+	border-style: solid;
+	border-width: 0 2px 2px;
+}
+/* Download arrow shape */
+.buttonDownload:after {
+	width: 0;
+	height: 0;
+	margin-left: 3px;
+	margin-top: -7px;
+	border-style: solid;
+	border-width: auto;
+	border-color: transparent;
+	border-top-color: inherit;
+	animation: downloadArrow 2s linear infinite;
+	animation-play-state: paused;
+}
+.buttonDownload:hover:before {
+	border-color: #4CC713;
+}
+.buttonDownload:hover:after {
+	border-top-color: #4CC713;
+	animation-play-state: running;
+}
+/* keyframes for the download icon anim */
+@keyframes downloadArrow {
+	/* 0% and 0.001% keyframes used as a hackish way of having the button frozen on a nice looking frame by default */
+	0% {
+		margin-top: -7px;
+		opacity: 1;
+	}
+	0.001% {
+		margin-top: -15px;
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		margin-top: 0;
+		opacity: 0;
+	}
+}
+&lt;/style&gt;
+&lt;h3 id=&#34;references-&#34;&gt;References :&lt;/h3&gt;
+&lt;p&gt;[1] OpenCV extra modules contrib - &lt;a href=&#34;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&#34;&gt;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2] Tensorflow : &lt;a href=&#34;https://tensorflow.org&#34;&gt;https://tensorflow.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[3] Stack overflow : &lt;a href=&#34;https://stackoverflow.com&#34;&gt;https://stackoverflow.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[4] Tensorflow object detection API using OpenCV : &lt;a href=&#34;https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API&#34;&gt;https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[5] Jean&amp;rsquo;s blog - &lt;a href=&#34;https://jeanvitor.com/tensorflow-object-detecion-opencv/&#34;&gt;https://jeanvitor.com/tensorflow-object-detecion-opencv/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[6] Deep learning using OpenCV : &lt;a href=&#34;https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV&#34;&gt;https://github.com/opencv/opencv/wiki/Deep-Learning-in-OpenCV&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[7] COCO dataset - &lt;a href=&#34;http://cocodataset.org/#home&#34;&gt;http://cocodataset.org/#home&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[8] Google Protobuf - &lt;a href=&#34;https://developers.google.com/protocol-buffers/&#34;&gt;https://developers.google.com/protocol-buffers/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[9] OpenCV Mask R-CNN sample - &lt;a href=&#34;https://github.com/opencv/opencv/blob/master/samples/dnn/mask_rcnn.py&#34;&gt;https://github.com/opencv/opencv/blob/master/samples/dnn/mask_rcnn.py&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

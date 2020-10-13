@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>edge detection | Ashwin Phadke</title>
+    <link>/tag/edge-detection/</link>
+      <atom:link href="/tag/edge-detection/index.xml" rel="self" type="application/rss+xml" />
+    <description>edge detection</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Tue, 09 Jun 2020 22:21:49 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>edge detection</title>
+      <link>/tag/edge-detection/</link>
+    </image>
+    
+    <item>
+      <title>Canny Edge Detection using OpenCV and C&#43;&#43;</title>
+      <link>/project/canny-edge-detection/</link>
+      <pubDate>Tue, 09 Jun 2020 22:21:49 +0530</pubDate>
+      <guid>/project/canny-edge-detection/</guid>
+      <description>&lt;p&gt;implementing canny edge detection from OpenCV with noise reduction, intensity gradient of image, non-maxima suppression and hysterisis thresholding&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

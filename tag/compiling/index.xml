@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>compiling | Ashwin Phadke</title>
+    <link>/tag/compiling/</link>
+      <atom:link href="/tag/compiling/index.xml" rel="self" type="application/rss+xml" />
+    <description>compiling</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Thu, 09 Jan 2020 20:48:22 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>compiling</title>
+      <link>/tag/compiling/</link>
+    </image>
+    
+    <item>
+      <title>Compiling and executing OpenCV programs written in C&#43;&#43;</title>
+      <link>/post/compile-cpp-program-opencv/</link>
+      <pubDate>Thu, 09 Jan 2020 20:48:22 +0530</pubDate>
+      <guid>/post/compile-cpp-program-opencv/</guid>
+      <description>&lt;h1 id=&#34;compiling-and-executing-c-programs&#34;&gt;Compiling and executing C++ programs&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Browse to the directory of your cpp program and open a terminal in that folder.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a CMake file name CMakeLists.txt in the same directory as your project :&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;              cmake_minimum_required(VERSION 2.8)
+              project( ProjectName )
+              find_package( OpenCV REQUIRED )`
+              add_executable( ProjectName your_program_main_file.cpp )
+              target_link_libraries( ProjectName ${OpenCV_LIBS} ) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Now we can generate the executable so as to run the program.
+To do so execute&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt; cmake .&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;followed by&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; make &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;on the terminal. The execution will run successfully and create binaries if there are no errors.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To execute your compiled program enter &lt;code&gt;./ProjectName&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

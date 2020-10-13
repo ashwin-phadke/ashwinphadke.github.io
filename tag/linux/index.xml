@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux | Ashwin Phadke</title>
+    <link>/tag/linux/</link>
+      <atom:link href="/tag/linux/index.xml" rel="self" type="application/rss+xml" />
+    <description>Linux</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Tue, 09 Jun 2020 20:45:46 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>Linux</title>
+      <link>/tag/linux/</link>
+    </image>
+    
+    <item>
+      <title>Installing OpenCV with contrib extra modules from source on Fedora Linux</title>
+      <link>/post/install-opencv/</link>
+      <pubDate>Tue, 09 Jun 2020 20:45:46 +0530</pubDate>
+      <guid>/post/install-opencv/</guid>
+      <description>&lt;p&gt;Why the sudden need?
+I have mostly used the OpenCV library as available from pip or by installing wheel until I required some more essential features that are not available from those pre built binaries. However the installation looking fairly simple can have a lot of issues if not done correctly and hence the reason for being so mnay questions on forums out there on the internet pertaining to the installation issues:&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s begin :&lt;/p&gt;
+&lt;p&gt;Although it is always a best practice to create a virtual environment so as to keep your project dependencies sorted but skipping the step here. If you want to create one or know more about those you can visit 
+&lt;a href=&#34;https://docs.python.org/3/tutorial/venv.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this link&lt;/a&gt; for more information .&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Clone &lt;code&gt;git clone https://github.com/opencv/opencv.git&lt;/code&gt; the official 
+&lt;a href=&#34;https://github.com/opencv/opencv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenCV repository&lt;/a&gt; from Github to have the latest updated version for use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This will create a folder named opencv in your home directory.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some dependencies need to be taken care of before building OpenCV for use. These dependencies are &lt;strong&gt;IMPORTANT&lt;/strong&gt; to facilitate the proper installation of opencv on the system and avoiding errors like &lt;code&gt;no module found&lt;/code&gt; and etc even after having a successful install.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The must have dependenices :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;         * dnf install cmake
+         * dnf install python-devel numpy
+         * dnf install gcc gcc-c++
+         * dnf install make
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;GTK support :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    * dnf install gtk2-devel
+    * dnf install libdc1394-devel
+    * dnf install libv4l-devel
+    * dnf install ffmpeg-devel
+    * dnf install gstreamer-plugins-base-devel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For parallelizing functions in opencv on Intel machines you can install Threaded building blocks &lt;code&gt;yum install tbb-devel&lt;/code&gt; . If you install this pass -D WITH_TBB=ON while building OpenCV with CMake.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Similarly for optimized mathematical operations install &lt;code&gt;dnf install eigen3-devel&lt;/code&gt; and pass -D WITH_EIGEN=ON as earlier.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a folder named build wherein you&amp;rsquo;ll configure and build the library to later install by doing
+&lt;code&gt;mkdir build&lt;/code&gt;
+&lt;code&gt;cd build&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Installing OpenCV - OpenCV is typically installed using CMake as(explanation from the documentation) - Installation has to be configured with CMake. It specifies which modules are to be installed, installation path, which additional libraries to be used, whether documentation and examples to be compiled etc. Below command is normally used for configuration (executed from build folder).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To configure build parameters using CMake you will pass the following command for minimal installation in release mode&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If you have installed the threading building blocks then you pass&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_TBB=ON&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If you have installed the eigen library then do&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON&lt;/code&gt;  .&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If installed both then&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Now to also include non free algorithms(optional) you will need to add the specific parameter to it as :&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON -D OPENCV_ENABLE_NONFREE=ON&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We have now set up our opencv installation command, many a times opencv&amp;rsquo;s extra modules also help you solve many computer vision challentasks and it is better to have the contrib i.e extra modules with opencv as a additional step. Hence to do so first clone the opencv contrib module from Github using&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git clone https://github.com/opencv/opencv_contrib.git&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;to a seperate folder than your opencv directory.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Doing so it is then required to pass the path to the downloaded contrib modules to the build configuration of opencv. To do that use the follwoing command&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local .. -D WITH_EIGEN=ON -D WITH_TBB=ON -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_EXTRA_MODULES_PATH=&amp;lt;opencv_contrib_path&amp;gt;/modules &amp;lt;opencv_source_directory_path&amp;gt;&lt;/code&gt; .&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This will serve as your final command to installl opencv with all the required modules.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Finally execute &lt;code&gt;make install&lt;/code&gt; to successfully build and install the OpenCV library on your Linux Fedora machine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting started with SQL server on Linux (using Azure data studio)</title>
+      <link>/post/my-article-name/</link>
+      <pubDate>Tue, 03 Mar 2020 20:42:55 +0530</pubDate>
+      <guid>/post/my-article-name/</guid>
+      <description>&lt;p&gt;Here is a guide to getting started with SQL Server and Azure Data Studio on Linux.&lt;/p&gt;
+&lt;p&gt;When I was starting on in my career , databases always meant the MySQL and PHP way to implement anything. However even though MySQL is really a gem SQL Server and it&amp;rsquo;s functionality gives you the full enterprise like experience and ease to implement into your code and especially the activity manager aka activity monitor which I fell for immediately.&lt;/p&gt;
+&lt;p&gt;Starting with SQL server and that too Linux is not very easy a task. Mostly the primary reason being that all the config files and supporting installation scripts are &lt;code&gt;python 2.x&lt;/code&gt; compatible which is strange considering how long ago &lt;code&gt;python 3.x&lt;/code&gt; was launched. I did not have &lt;code&gt;python 2.x&lt;/code&gt; and did not want two python versions on my PC so I took up the task to convert most of the available installation scripts to support &lt;code&gt;python 3.x&lt;/code&gt; and which is yet in progress giving the sheer amount of things needed to change.
+Meanwhile the development couldn&amp;rsquo;t have waited and hence I am writing a guide to facilitate ease in installing SQL Server on Linux. The documentation is pretty good in describing things but also is a lot of different pages to visit for a simple task. Hence adding it all under one page here.&lt;/p&gt;
+&lt;p&gt;My Machine configuration is as follows(for reference) :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel I3-6006U&lt;/li&gt;
+&lt;li&gt;4GB / 1TB&lt;/li&gt;
+&lt;li&gt;Dual boot
+&lt;ul&gt;
+&lt;li&gt;Fedora 31&lt;/li&gt;
+&lt;li&gt;Windows 10&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 2.7 and 3.5 with pip package manager.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To successfully install SQL server and start using it follow the following steps carefully:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Update your system : Run &lt;code&gt;sudo dnf update&lt;/code&gt; followed with &lt;code&gt;sudo dnf upgrade&lt;/code&gt;
+to have the most recent updates to your Fedora machine.
+If you are using Debian/Ubuntu you can simply do &lt;code&gt;sudo apt-get update&lt;/code&gt; and &lt;code&gt;sudo apt-get upgrade&lt;/code&gt;            respectively.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Download SQL configuration file from Red Hat repository :&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/8/mssql-server-2019.repo&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;To Install the SQL server run :&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;sudo yum install -y mssql-server&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This will install all the primary requirements for SQL server.&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;Now to configure your SQL server installation you need to run the following command in order to complete the installation. The configuration step includes various options to add/remove add-ons to your SQL server installation and also to choose your edition.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;sudo /opt/mssql/bin/mssql-conf setup&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;This will fully install SQL server on your machine. Installation doesn&amp;rsquo;t take much time as most of the stuff is already done in Step 4 and step 5 includes configurations and settings that are needed to be installed in order to run the server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run &lt;code&gt;systemctl status mssql-server&lt;/code&gt; to check whether the service is running or not. You can also use the standard &lt;code&gt;start&lt;/code&gt; and &lt;code&gt;stop&lt;/code&gt; for &lt;code&gt;systemctl&lt;/code&gt; to change the service state.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So far we have installed SQL server but we also need to be able to access it, you can use &lt;code&gt;pyodbc&lt;/code&gt; for all your python needs , also UnixODBC to connect via python program and/or command line. For that you will need some command line tools which you can learn to install here following steps by clicking 
+&lt;a href=&#34;https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-ver15#tools&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; .
+The reason for not including here is :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is already included on the link like the above steps too.&lt;/li&gt;
+&lt;li&gt;The focus here is SQL Server + Azure Data Studio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;To install Azure Data studio in a very simple way click 
+&lt;a href=&#34;https://azuredatastudiobuilds.blob.core.windows.net/releases/1.15.1/azuredatastudio-linux-1.15.1.rpm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here for version 1.15.1&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;After the successful installation it will show up in your app directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Simply start using command &lt;code&gt;azuredatastudio&lt;/code&gt; in terminal or by clicking Azure data studio in apps and connect with the username and password that you had configured in step 4. Default username is &lt;code&gt;SA&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You have now successfully managed to install SQL Server using Azure Data Studio on Linux(Fedora).&lt;/p&gt;
+&lt;hr&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

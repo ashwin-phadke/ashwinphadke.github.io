@@ -28,12 +28,47 @@
   </url>
   
   <url>
+    <loc>/tag/dnn/</loc>
+    <lastmod>2020-08-20T21:38:51+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/load-tensorflow-models-using-opencv/</loc>
     <lastmod>2020-08-20T21:38:51+05:30</lastmod>
   </url>
   
   <url>
+    <loc>/tag/models/</loc>
+    <lastmod>2020-08-20T21:38:51+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/neural-networks/</loc>
+    <lastmod>2020-08-20T21:38:51+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/opencv/</loc>
+    <lastmod>2020-08-20T21:38:51+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
+    <lastmod>2020-08-20T21:38:51+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/python/</loc>
+    <lastmod>2020-08-20T21:38:51+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-08-20T21:38:51+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/tensorflow/</loc>
     <lastmod>2020-08-20T21:38:51+05:30</lastmod>
   </url>
   
@@ -48,6 +83,21 @@
   </url>
   
   <url>
+    <loc>/tag/computer-vision/</loc>
+    <lastmod>2020-06-23T21:57:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/deep-learning/</loc>
+    <lastmod>2020-06-23T21:57:14+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/neural-network/</loc>
+    <lastmod>2020-06-23T21:57:14+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/talk/intro-to-deep-learning/</loc>
     <lastmod>2020-06-17T18:00:00+05:30</lastmod>
   </url>
@@ -58,17 +108,12 @@
   </url>
   
   <url>
-    <loc>/tag/deep-learning/</loc>
-    <lastmod>2020-06-14T22:02:15+05:30</lastmod>
-  </url>
-  
-  <url>
     <loc>/project/</loc>
     <lastmod>2020-06-14T22:02:15+05:30</lastmod>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>/tag/sqlite/</loc>
     <lastmod>2020-06-14T22:02:15+05:30</lastmod>
   </url>
   
@@ -103,7 +148,17 @@
   </url>
   
   <url>
+    <loc>/tag/c-/</loc>
+    <lastmod>2020-06-09T22:21:49+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/project/canny-edge-detection/</loc>
+    <lastmod>2020-06-09T22:21:49+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/edge-detection/</loc>
     <lastmod>2020-06-09T22:21:49+05:30</lastmod>
   </url>
   
@@ -113,7 +168,42 @@
   </url>
   
   <url>
+    <loc>/tag/contrib/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/fedora/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/install/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/install-opencv/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/linux/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/open-source/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/opencv-contrib/</loc>
+    <lastmod>2020-06-09T20:45:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/source/</loc>
     <lastmod>2020-06-09T20:45:46+05:30</lastmod>
   </url>
   
@@ -123,13 +213,53 @@
   </url>
   
   <url>
+    <loc>/tag/confusion-matrix/</loc>
+    <lastmod>2020-05-20T20:50:31+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/ml-dl-confusion-matrix/</loc>
     <lastmod>2020-05-20T20:50:31+05:30</lastmod>
   </url>
   
   <url>
+    <loc>/tag/wikipedia/</loc>
+    <lastmod>2020-05-20T20:50:31+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/azure/</loc>
+    <lastmod>2020-03-03T20:42:55+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/azure-data-studio/</loc>
+    <lastmod>2020-03-03T20:42:55+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/my-article-name/</loc>
     <lastmod>2020-03-03T20:42:55+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/sql/</loc>
+    <lastmod>2020-03-03T20:42:55+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/sql-server/</loc>
+    <lastmod>2020-03-03T20:42:55+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/cmake/</loc>
+    <lastmod>2020-01-09T20:48:22+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/compiling/</loc>
+    <lastmod>2020-01-09T20:48:22+05:30</lastmod>
   </url>
   
   <url>

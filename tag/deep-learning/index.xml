@@ -1,16 +1,166 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Deep Learning | Ashwin Phadke</title>
+    <title>deep learning | Ashwin Phadke</title>
     <link>/tag/deep-learning/</link>
       <atom:link href="/tag/deep-learning/index.xml" rel="self" type="application/rss+xml" />
-    <description>Deep Learning</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Sun, 14 Jun 2020 22:02:15 +0530</lastBuildDate>
+    <description>deep learning</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Tue, 23 Jun 2020 21:57:14 +0530</lastBuildDate>
     <image>
       <url>/img/avatar</url>
-      <title>Deep Learning</title>
+      <title>deep learning</title>
       <link>/tag/deep-learning/</link>
     </image>
+    
+    <item>
+      <title>Build your own layers for deep learning models using TensorFlow 2.0 and Python</title>
+      <link>/post/build-layers-tf-python/</link>
+      <pubDate>Tue, 23 Jun 2020 21:57:14 +0530</pubDate>
+      <guid>/post/build-layers-tf-python/</guid>
+      <description>&lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
+&lt;p&gt;During a very recent 
+&lt;a href=&#34;https://ashwin-phadke.github.io/talk/intro-to-deep-learning/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;webinar&lt;/a&gt; where I was a speaker for the topic &lt;code&gt;Deep learning with TensorFlow&lt;/code&gt; I repeatedly was asked a question regarding how would one really define their own layers, parameter and how they work so as to watch it do the magic while showing them some notebooks that had parameters to the layers that we regularly use. This prompted me to write a blog explaining layers and their parameters.&lt;/p&gt;
+&lt;h3 id=&#34;building-tensorflow-layers&#34;&gt;Building Tensorflow Layers&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;tf.keras.layers.Layer&lt;/code&gt; or also written as &lt;code&gt;tf.compat.v1.keras.layers.Layer&lt;/code&gt; gives you easy and effective access to start writing your own layers in building the desired convolutional neural network.
+Keras backend is well integrated with TensorFlow giving you ease of coding your layers at a high level understanding and handles a ot of code that you would otherwise would&amp;rsquo;ve written.&lt;/p&gt;
+&lt;p&gt;Writing your own layers is not that daunting if you have a certain understanding on how they work.
+According to the TensorFlow documentation&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Many machine learning models are expressible as the composition and stacking of relatively simple layers, and TensorFlow provides both a set of many common layers as a well as easy ways for you to write your own application-specific layers either from scratch or as the composition of existing layers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Which is pretty much True in the sense that these layers can be written like calling functions with arguments. Here in the &lt;code&gt;tf.keras.layers&lt;/code&gt; package the &lt;code&gt;layers&lt;/code&gt; that we want to define are treated as objects. So to construct a simple layer by yourself all you need is to construct the layer object and you are pretty much good to go.&lt;/p&gt;
+&lt;p&gt;Some widely used layers include&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Conv1D&lt;/li&gt;
+&lt;li&gt;Conv2D&lt;/li&gt;
+&lt;li&gt;AvgPool1D&lt;/li&gt;
+&lt;li&gt;Dense&lt;/li&gt;
+&lt;li&gt;Flatten&lt;/li&gt;
+&lt;li&gt;LSTMCell&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;and many 
+&lt;a href=&#34;https://www.tensorflow.org/api_docs/python/tf/keras/layers#classes_2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;more&lt;/a&gt;.
+To start defining your own layers is no hidden secret and can be easily achieved by doing (we will be looking at Sequential layers here)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;model = tf.keras.models.Sequntial()
+
+or
+
+
+model = tf.compat.v1.keras.Sequential()
+
+or
+
+
+model = tf.compat.v1.keras.models.Sequential()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here the most important task of defining the type of your layers is done.
+Let&amp;rsquo;s look at some of these layers and their functions one by one.
+Once you are ready with your network or at least have an idea of how many layers you would like to write for a standard result you can proceed to now defining them. What Sequential essentially does it groups a linear stack of layers.
+Once you have done that now you are ready to construct your own layer objects.&lt;/p&gt;
+&lt;p&gt;After declaring above you can either do&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;model = tf.keras.models.Sequential()
+
+model.add(tf.keras.layers.Dense(8, input_dim=16))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;OR&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;model = tf.keras.Sequentail([ tf.keras.layers.Dense(8, input_dim=18)])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Both these methods will help you achieve your goal of writing your own layers. To begin with let&amp;rsquo;s build our own complete network and understand each parameters.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;model = tf.keras.models.Sequential([
+  
+  tf.keras.layers.Conv2D(64, (3,3), activation=&#39;relu&#39;, input_shape=(28, 28, 1)),
+
+  # Max pooling as we will take maximum value which is a 2X2 poll so every 4 pixels go to 1
+  tf.keras.layers.MaxPooling2D(2, 2),
+
+  # Another layer
+  tf.keras.layers.Conv2D(64, (3,3), activation=&#39;relu&#39;),
+  tf.keras.layers.MaxPooling2D(2,2),
+
+  # Converts the input to 1D set instead of the square we saw earlier
+  tf.keras.layers.Flatten(),
+
+  # Adds a layer of neurons
+  tf.keras.layers.Dense(128, activation=&#39;relu&#39;),
+
+  # The last layers have specific number of neurons, ask me why! :)
+
+  tf.keras.layers.Dense(10, activation=&#39;softmax&#39;)
+])
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now once we have built our layer, let&amp;rsquo;s try to understand it one by one.
+We have already seen in brief about Sequential(), let&amp;rsquo;s now dive into the layers. The module &lt;code&gt;tf.keras.layers.Layer&lt;/code&gt; has different classes defined for all different kinds of models some of which are also listed above.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In the first layer &lt;code&gt;Conv2D(64, (3,3), activation=&#39;relu&#39;, input_shape=(28, 28, 1)),&lt;/code&gt; refers to class 
+&lt;a href=&#34;https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Conv2D&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This layers creates a conv kernel to convolve with input to produce tensors.&lt;/li&gt;
+&lt;li&gt;Activation function needs to be defined here and also if this layer is being used as the first layer in this model as shown in this example it is important to include &lt;code&gt;input_shape&lt;/code&gt; as in &lt;code&gt;input_shape = (128, 128, 3)&lt;/code&gt; for an image that is 128 X 128 pixel wide with three channels mainly RGB or use 1if it is a grey scale image.&lt;/li&gt;
+&lt;li&gt;Arguments here include :
+&lt;ul&gt;
+&lt;li&gt;the filter size as 64 , which creates 64 filters to convolve over the input.&lt;/li&gt;
+&lt;li&gt;the size of the kernel which is defined as (3, 3).&lt;/li&gt;
+&lt;li&gt;activation is set to as &lt;code&gt;relu&lt;/code&gt;, what ReLU activation in brief means that the output values from this activation function are positives as all values in the left of the number line are counted as &lt;code&gt;0&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;the input_shape as defined above here is an grey scale image with size 28 X 28 pixels hence (28, 28, 1). Input shape can be defined as &lt;code&gt;(batch_size, rows, cols, channels)&lt;/code&gt; to understand order and meaning of the parameters.&lt;/li&gt;
+&lt;li&gt;other arguments which can be added are &lt;code&gt;strides&lt;/code&gt;, &lt;code&gt;padding&lt;/code&gt;, &lt;code&gt;use_bias&lt;/code&gt; and many more based on the requirements.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The second layer &lt;code&gt;tf.keras.layers.MaxPooling2D(2, 2),&lt;/code&gt; is a maxpooling layer for which more information can be found 
+&lt;a href=&#34;https://www.tensorflow.org/api_docs/python/tf/keras/layers/MaxPool2D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This layers creates a max pooling operation for 2D spatial data.&lt;/li&gt;
+&lt;li&gt;Arguments here include :
+&lt;ul&gt;
+&lt;li&gt;MaxPooling is used to down-sample the data or the input to it by taking the maximum value from the window defined by &lt;code&gt;pool_size&lt;/code&gt; which here is (2, 2).&lt;/li&gt;
+&lt;li&gt;The window is shifted by strides which are values by which we define by how many pixels our window moves ahead through the input representations.&lt;/li&gt;
+&lt;li&gt;If padding is defined as &lt;code&gt;same&lt;/code&gt; the output shape becomes &lt;code&gt;output shape = input_shape / strides&lt;/code&gt; and &lt;code&gt;output shape = (input_shape - pool_size + 1) / strides)&lt;/code&gt; when padding size is defined as &lt;code&gt;valid&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;This returns 4D tensor representing maximum pooled values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The third layer &lt;code&gt;tf.keras.layers.Flatten()&lt;/code&gt; which is a layer in between the convolutional layer and a fully connected layer.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As evident from the name it flattens the input into a 1D vector that can be fed to a fully connected classifier layer.&lt;/li&gt;
+&lt;li&gt;The main argument here &lt;code&gt;data_format&lt;/code&gt; as when &lt;code&gt;inputs are shaped (batch,) without a channel dimension, then flattening adds an extra channel dimension and output shapes are (batch, 1)&lt;/code&gt; - TFDocs.
+In this case the input is 28X28X3 with 64 filter which makes the output of the Flatten layer to &lt;code&gt;64X28X28 = 50176&lt;/code&gt; as a 1D vector instead of multi-dimension as in previous layers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The fourth layer &lt;code&gt;  tf.keras.layers.Dense(10, activation=&#39;softmax&#39;)&lt;/code&gt; adds a single layer to your network which is densely or fully connected.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each neuron declared here is connected to or receives input from all neurons from previous layers hence the name as densely connected.&lt;/li&gt;
+&lt;li&gt;Dense implements the operation: output = activation(dot(input, kernel) + bias) where activation is the element-wise activation function passed as the activation argument, kernel is a weights matrix created by the layer, and bias is a bias vector created by the layer (only applicable if use_bias is True). - TFDocs&lt;/li&gt;
+&lt;li&gt;The final layer is the layer that can be described here as output layer. The number &lt;code&gt;10&lt;/code&gt; here is the number of classes that we are fed or the number of outputs that are to be observed.&lt;/li&gt;
+&lt;li&gt;One needs to understand that the output is not however a one shot yes or no but a list of probabilities of all the classes wherein then the highest probability is the prediction done by the model.&lt;/li&gt;
+&lt;li&gt;More importantly we are using the function &lt;code&gt;softmax&lt;/code&gt; here which in simple words mean that the highest probability will be treated as 1 and all others as 0. This might sound somewhat like maxpool but these are two different concepts. Softmax function can also be loosely defined as the function that converts logits to probabilities that sum to 1. In short if the result of  classes is like [0.1, 0.4, 0.5] then the Softmax will return [0, 0, 1] . Known use-cases of softmax regression are in discriminative models such as Cross-Entropy and Noise Contrastive Estimation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Writing your own layers becomes more important when you want to build a fully custom solution which otherwise cannot be achieved using transfer learning(although being an decent method if you want a prototype). This helps you understand the tool you are using here TensorFlow and also get an understanding of how SoTA neural netwrks work and what do those layers mean or how the authors reached to those specific parameter values. We have networks ranging from 20 layers to more than a 100 with huge complexity which we aim to ease here by understanding the design process.&lt;/p&gt;
+&lt;p&gt;I would also suggest going through the Tensorflow documentation extensively as they are a offiial resource of class and functions available in the TensorFlow API with a very good description of every parameter in detail.&lt;/p&gt;
+&lt;h3 id=&#34;in-a-jiffy&#34;&gt;In a jiffy&lt;/h3&gt;
+&lt;p&gt;We took a look at a higher level understanding of various TensorFlow layers, what do they mean and what do their arguments mean in brief. You can start building your own model from scratch(well let&amp;rsquo;s say just calling classes and functions :) ) and test them out by tuning various parameters mentioned and from the function definitions too and maybe you&amp;rsquo;ll soon have a best performing model in your profile. Happy coding!&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://colab.research.google.com/drive/11dXFxMvuSdqhc2a63tvzJBcZ2IB4ESVL#scrollTo=PqNIM4OAkAZ1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Code for reference&lt;/a&gt; |
+
+&lt;a href=&#34;https://github.com/ashwin-phadke&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt; |
+
+&lt;a href=&#34;https://ashwin-phadke.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Website&lt;/a&gt; |&lt;/p&gt;
+&lt;p&gt;References :&lt;/p&gt;
+&lt;p&gt;[1] Tensorflow documentation - &lt;a href=&#34;https://www.tensorflow.org/api_docs/python/tf&#34;&gt;https://www.tensorflow.org/api_docs/python/tf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2] Softmax function simpplified - &lt;a href=&#34;https://towardsdatascience.com/softmax-function-simplified-714068bf8156&#34;&gt;https://towardsdatascience.com/softmax-function-simplified-714068bf8156&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[3] Wikipedia&lt;/p&gt;
+&lt;p&gt;[4] Coursera - Tensorflow lectures by Laurence Moroney&lt;/p&gt;
+&lt;hr&gt;
+</description>
+    </item>
     
     <item>
       <title>Computer Vision Playground</title>

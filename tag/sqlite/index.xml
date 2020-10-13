@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQLite | Ashwin Phadke</title>
+    <link>/tag/sqlite/</link>
+      <atom:link href="/tag/sqlite/index.xml" rel="self" type="application/rss+xml" />
+    <description>SQLite</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Sun, 14 Jun 2020 22:02:15 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>SQLite</title>
+      <link>/tag/sqlite/</link>
+    </image>
+    
+    <item>
+      <title>Computer Vision Playground</title>
+      <link>/project/cvplayground/</link>
+      <pubDate>Sun, 14 Jun 2020 22:02:15 +0530</pubDate>
+      <guid>/project/cvplayground/</guid>
+      <description>&lt;p&gt;A computer vision playground to try and test end to end(test to deploy) computer vision pipeline.
+We are looking for open source enthusiasts to help advance the project, to know more click on contribute.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

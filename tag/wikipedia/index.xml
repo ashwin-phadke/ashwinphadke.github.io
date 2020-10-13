@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wikipedia | Ashwin Phadke</title>
+    <link>/tag/wikipedia/</link>
+      <atom:link href="/tag/wikipedia/index.xml" rel="self" type="application/rss+xml" />
+    <description>wikipedia</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Wed, 20 May 2020 20:50:31 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>wikipedia</title>
+      <link>/tag/wikipedia/</link>
+    </image>
+    
+    <item>
+      <title>Understanding Confusion matrix for machine learning in a simple way</title>
+      <link>/post/ml-dl-confusion-matrix/</link>
+      <pubDate>Wed, 20 May 2020 20:50:31 +0530</pubDate>
+      <guid>/post/ml-dl-confusion-matrix/</guid>
+      <description>&lt;p&gt;Machine learning basic concepts explained as notes from various courses, books and blogs to my understanding.&lt;/p&gt;
+&lt;h1 id=&#34;confusion-matrix&#34;&gt;Confusion Matrix&lt;/h1&gt;
+&lt;p&gt;Confusion matrix as a evaluation metric has been discussed a lot. Indeed, the reason being it&amp;rsquo;s wide usability and f1-score being a important metric in order to evaluate those classification models. Here we take a look at understanding the confusion matrix in a rather simple way.&lt;/p&gt;
+&lt;p&gt;Let us assume a dataset with around 40 rows of customer chrun according to a survey from a leading company. The confusion matrix herein will include the matrix of corrected and wrong predictions done on actual labels i.e the outcomes of the preditions on actual labels.&lt;/p&gt;
+&lt;p&gt;The matrix is represented as :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rows :  Contain actual or true labels in the test set i.e here the labels given by the survey.
+
+columns : Contain predicted labels by the classifier trained on the customer survey dataset.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is imperative to understand this relation so as to identify how accurate was the prediction done from the classifier.&lt;/p&gt;
+&lt;p&gt;We are going to see a binary classifcation example.&lt;/p&gt;
+&lt;p&gt;We know that such evalutaion metrics shows the models ability to correctly predict or seperate the classes.
+We will be also discussing f1-score here which is also important to learn along with confusion matrix.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/ashwin-phadke/implementations-and-guides/blob/master/wiki_contents/confmatrix.jpg&#34; alt=&#34;Matrix&#34; title=&#34;Matrix Image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The confusion matrix helps you measure some of very important metrics to assess performance of your model like .&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- Precision.
+
+- Recall.
+
+- Accuracy and plot ROC-AUC curve too.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let us first dive into ddefining certain terminologies to better understand the concept of confusion matrix.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- True Positive : Model predicted true and it is correct as per labels.
+
+- False Positive : Model predicted true but it is actually false.
+
+- True Negative : Model predicted false and it is false.
+
+- False Negative : Model predicted false but it is True.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/ashwin-phadke/implementations-and-guides/blob/master/wiki_contents/abc.png&#34; alt=&#34;Image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The image clearly illustrates how these values are divided in the matrix.&lt;/p&gt;
+&lt;p&gt;We will take a look at how to calculate the values for the metrics derived from this matrix(lol, rhyme)&lt;/p&gt;
+&lt;p&gt;Precision is a measure of accuracy provided that a class label has been predicted.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Precision = True Positive 
+            __________________________
+
+            True Positve + False Positive
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Recall = True Positive 
+        ______________________________
+
+        True Positve + False Negative
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;
+f1-score = 2 X Precision + Recall
+            ______________________
+
+            Precision X Recall
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thus, average accuracy can be calculated using average of all f1-scores and the desired values is 1. F1-score can also be used for multi class classifiers.&lt;/p&gt;
+&lt;p&gt;If you want to learn more you can always refer to 
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Confusion_matrix&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Wikipedia&lt;/a&gt; for more.&lt;/p&gt;
+&lt;hr&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

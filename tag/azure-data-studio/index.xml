@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Data Studio | Ashwin Phadke</title>
+    <link>/tag/azure-data-studio/</link>
+      <atom:link href="/tag/azure-data-studio/index.xml" rel="self" type="application/rss+xml" />
+    <description>Azure Data Studio</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© `2020` Ashwin Phadke for Hugo </copyright><lastBuildDate>Tue, 03 Mar 2020 20:42:55 +0530</lastBuildDate>
+    <image>
+      <url>/img/avatar</url>
+      <title>Azure Data Studio</title>
+      <link>/tag/azure-data-studio/</link>
+    </image>
+    
+    <item>
+      <title>Getting started with SQL server on Linux (using Azure data studio)</title>
+      <link>/post/my-article-name/</link>
+      <pubDate>Tue, 03 Mar 2020 20:42:55 +0530</pubDate>
+      <guid>/post/my-article-name/</guid>
+      <description>&lt;p&gt;Here is a guide to getting started with SQL Server and Azure Data Studio on Linux.&lt;/p&gt;
+&lt;p&gt;When I was starting on in my career , databases always meant the MySQL and PHP way to implement anything. However even though MySQL is really a gem SQL Server and it&amp;rsquo;s functionality gives you the full enterprise like experience and ease to implement into your code and especially the activity manager aka activity monitor which I fell for immediately.&lt;/p&gt;
+&lt;p&gt;Starting with SQL server and that too Linux is not very easy a task. Mostly the primary reason being that all the config files and supporting installation scripts are &lt;code&gt;python 2.x&lt;/code&gt; compatible which is strange considering how long ago &lt;code&gt;python 3.x&lt;/code&gt; was launched. I did not have &lt;code&gt;python 2.x&lt;/code&gt; and did not want two python versions on my PC so I took up the task to convert most of the available installation scripts to support &lt;code&gt;python 3.x&lt;/code&gt; and which is yet in progress giving the sheer amount of things needed to change.
+Meanwhile the development couldn&amp;rsquo;t have waited and hence I am writing a guide to facilitate ease in installing SQL Server on Linux. The documentation is pretty good in describing things but also is a lot of different pages to visit for a simple task. Hence adding it all under one page here.&lt;/p&gt;
+&lt;p&gt;My Machine configuration is as follows(for reference) :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel I3-6006U&lt;/li&gt;
+&lt;li&gt;4GB / 1TB&lt;/li&gt;
+&lt;li&gt;Dual boot
+&lt;ul&gt;
+&lt;li&gt;Fedora 31&lt;/li&gt;
+&lt;li&gt;Windows 10&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Python 2.7 and 3.5 with pip package manager.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To successfully install SQL server and start using it follow the following steps carefully:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Update your system : Run &lt;code&gt;sudo dnf update&lt;/code&gt; followed with &lt;code&gt;sudo dnf upgrade&lt;/code&gt;
+to have the most recent updates to your Fedora machine.
+If you are using Debian/Ubuntu you can simply do &lt;code&gt;sudo apt-get update&lt;/code&gt; and &lt;code&gt;sudo apt-get upgrade&lt;/code&gt;            respectively.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Download SQL configuration file from Red Hat repository :&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/8/mssql-server-2019.repo&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;To Install the SQL server run :&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;sudo yum install -y mssql-server&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This will install all the primary requirements for SQL server.&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;Now to configure your SQL server installation you need to run the following command in order to complete the installation. The configuration step includes various options to add/remove add-ons to your SQL server installation and also to choose your edition.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;sudo /opt/mssql/bin/mssql-conf setup&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;This will fully install SQL server on your machine. Installation doesn&amp;rsquo;t take much time as most of the stuff is already done in Step 4 and step 5 includes configurations and settings that are needed to be installed in order to run the server.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run &lt;code&gt;systemctl status mssql-server&lt;/code&gt; to check whether the service is running or not. You can also use the standard &lt;code&gt;start&lt;/code&gt; and &lt;code&gt;stop&lt;/code&gt; for &lt;code&gt;systemctl&lt;/code&gt; to change the service state.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So far we have installed SQL server but we also need to be able to access it, you can use &lt;code&gt;pyodbc&lt;/code&gt; for all your python needs , also UnixODBC to connect via python program and/or command line. For that you will need some command line tools which you can learn to install here following steps by clicking 
+&lt;a href=&#34;https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-ver15#tools&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; .
+The reason for not including here is :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is already included on the link like the above steps too.&lt;/li&gt;
+&lt;li&gt;The focus here is SQL Server + Azure Data Studio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;To install Azure Data studio in a very simple way click 
+&lt;a href=&#34;https://azuredatastudiobuilds.blob.core.windows.net/releases/1.15.1/azuredatastudio-linux-1.15.1.rpm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here for version 1.15.1&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;After the successful installation it will show up in your app directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Simply start using command &lt;code&gt;azuredatastudio&lt;/code&gt; in terminal or by clicking Azure data studio in apps and connect with the username and password that you had configured in step 4. Default username is &lt;code&gt;SA&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You have now successfully managed to install SQL Server using Azure Data Studio on Linux(Fedora).&lt;/p&gt;
+&lt;hr&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
