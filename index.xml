@@ -40,7 +40,7 @@ However it is not clear what needs to be optimized, whether the model or the inp
     </item>
     
     <item>
-      <title>Load Tensorflow Models Using OpenCV</title>
+      <title>Load TensorFlow Models Using OpenCV</title>
       <link>/post/load-tensorflow-models-using-opencv/</link>
       <pubDate>Thu, 20 Aug 2020 21:38:51 +0530</pubDate>
       <guid>/post/load-tensorflow-models-using-opencv/</guid>
@@ -66,8 +66,8 @@ import tensorflow as tf
 &lt;a href=&#34;https://ashwin-phadke.github.io/post/install-opencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;getting-started-&#34;&gt;Getting started :&lt;/h3&gt;
 &lt;p&gt;Jump right to the end if you are looking to download the codes.
-For this tutorial we require the Tensorflow models in a specific manner, needn&amp;rsquo;t worry because they are quite easily available through the TF model zoo.&lt;/p&gt;
-&lt;p&gt;The result of training a model using Tensorflow is a binary file with extension .pb which contains both topology and weights of trained network. You may download one of them from 
+For this tutorial we require the &lt;code&gt;Tensorflow&lt;/code&gt; models in a specific manner, needn&amp;rsquo;t worry because they are quite easily available through the TF model zoo.&lt;/p&gt;
+&lt;p&gt;The result of training a model using &lt;code&gt;Tensorflow&lt;/code&gt; is a binary file with extension .pb which contains both topology and weights of trained network. You may download one of them from 
 &lt;a href=&#34;https://github.com/tensorflow/models&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Model Zoo&lt;/a&gt;,&lt;/p&gt;
 &lt;p&gt;Once you have the &lt;code&gt;.pb&lt;/code&gt; file you will also need a &lt;code&gt;.pbtxt&lt;/code&gt; file which is an extra configuration file required which you can find 
 &lt;a href=&#34;https://github.com/opencv/opencv_extra/tree/master/testdata/dnn&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; for many pretrained models and below you can find a good list from the OpenCV wiki to help you get started faster.&lt;/p&gt;
